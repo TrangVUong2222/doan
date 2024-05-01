@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Icon from 'react-native-vector-icons/FontAwesome6';
 import {
     View,
     Text,
@@ -11,24 +12,35 @@ import {
     SafeAreaView,
 } from 'react-native'
 
-export default Profile = () =>{
+export default Id = ({navigation}) =>{
     return(
       
             
         <ImageBackground
-            source={require("../assets/image/backgroundimg.png")}
+            source={require("../assets/image/backgroundimg1.png")}
             style= {{width:'100%', height:'100%'}}    
         > 
          <SafeAreaView style={styles.container}>
+         
             <View style={styles.headerBox}>
-                  <Image
-                    source={require("../assets/icon/backicon.png")}
-                    style={styles.backIcon}
-                    />
-                  <Image
-                    source={require("../assets/icon/user1.png")}
-                    style={styles.user}
+                    <View style={styles.boxbackicon}>
+                        <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
+                        <Icon
+                        name='chevron-left'
+                        size={25}
+                        color={'white'}
+                        />
+                        </TouchableOpacity>
+                    </View> 
+                  <View>
+                <Icon 
+                    name='circle-user'
+                    size={70}
+                    color={'white'}
                   />
+                  </View>
+                  <View>
+                  </View>
             </View>
             <View style={styles.info}>
                 <View style={styles.row}>
@@ -120,11 +132,12 @@ const styles = StyleSheet.create({
     headerBox:{
       width:'100%',
       height: 75,
-      marginTop:42,
+      marginTop:15,
       flexDirection:'row',
-      justifyContent:'center',
-      paddingHorizontal:30,
+      justifyContent:'space-between',
       alignItems:'center',
+      paddingHorizontal:30
+     
     },    
    
     
@@ -155,6 +168,7 @@ const styles = StyleSheet.create({
     },
     backIcon:{
       position:"absolute",
-      left:28
+      marginLeft:-150,
+      marginTop:-15
     }
 })

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Icon from 'react-native-vector-icons/FontAwesome6';
 import {
     View,
     Text,
@@ -12,26 +13,36 @@ import {
 } from 'react-native';
 
 
-export default Profile = () =>{
+export default Profile = ({navigation}) =>{
     return(
       
             
         <ImageBackground
-            source={require("../assets/image/backgroundimg.png")}
+            source={require("../assets/image/backgroundimg1.png")}
             style= {{width:'100%', height:'100%'}}    
         > 
          <SafeAreaView
-                style={styles.container}
-          >
+                style={styles.container}>
+
               <View style={styles.headerBox}>
-                  <Image
-                    source={require("../assets/icon/backicon.png")}
-                    style={styles.backIcon}
-                    />
-                  <Image
-                    source={require("../assets/icon/user1.png")}
-                    style={styles.user}
+                    <View style={styles.boxbackicon}>
+                        <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
+                        <Icon
+                        name='chevron-left'
+                        size={25}
+                        color={'white'}
+                        />
+                        </TouchableOpacity>
+                    </View>  
+              <View style={styles.boxuser}>
+                  <Icon 
+                    name='circle-user'
+                    size={70}
+                    color={'white'}
                   />
+              </View>
+              <View>
+              </View>
                 </View>
               <View style={styles.textName}>
                   <Text style={styles.textHeader}>
@@ -39,21 +50,28 @@ export default Profile = () =>{
                   </Text>
               </View>
               <View style={styles.info}>
-                <View style={styles.row}>
-                    <View style={styles.box}>
-                        <Image 
-                        source={require("../assets/icon/user.png")}
-                        style={styles.image}
-                        />
-                      </View>
-                        <Text style={styles.text}>
-                                Thông tin tài khoản
-                        </Text>
-                        <Image
-                        style={styles.nextIcon}
-                        source={require("../assets/icon/nexticon.png")}
-                        />
+              <TouchableOpacity onPress={() => navigation.navigate('Id')} >
+              <View style={styles.row}>
+             
+                <View style={styles.box}>
+                <Image
+                          source={require("../assets/icon/user.png")}
+                          style={styles.image}
+                          />
                 </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Text style={styles.text}>
+                    Thông tin tài khoản
+                  </Text>
+                  <Image
+                    style={styles.nextIcon}
+                    source={require("../assets/icon/nexticon.png")}
+                  />
+                </View>
+            </View>
+            </TouchableOpacity>
+
+                
                       <View style={styles.row}> 
                         <View style={styles.box}>
                           <Image
@@ -102,7 +120,9 @@ export default Profile = () =>{
               </View>
               <View style={styles.boxLogin}>
                     <TouchableOpacity style={[styles.buttomOut]} >
-                        <Text style ={styles.textButtom}>
+                        <Text style ={styles.textButtom}onPress={()=>{
+                                navigation.navigate('Login');
+                              }}>
                            Đăng xuất
                         </Text>  
               </TouchableOpacity>
@@ -123,12 +143,13 @@ const styles = StyleSheet.create({
         height:'100%',
     },    
     headerBox:{
-        width:'100%',
-        height: 75,
-        flexDirection:'row',
-        justifyContent:'center',
-        paddingHorizontal:30,
-        alignItems:'center',
+      height: 75,
+      marginTop: 15,
+      flexDirection: 'row',
+      justifyContent: 'space-between', 
+      paddingHorizontal: 30,
+      alignItems: 'center',
+      
     },
     textName: {
         justifyContent: 'center',
@@ -172,10 +193,11 @@ const styles = StyleSheet.create({
     },
     backIcon:{
       position:"absolute",
-      left:44,
+      left:45,
+      marginTop:-15
     },
     buttomOut:{
-      backgroundColor:"#6B8E81",
+      backgroundColor:"red",
       width:274,
       height:49,
       borderRadius:15,
@@ -188,7 +210,28 @@ const styles = StyleSheet.create({
       alignItems:"center",
       marginTop:250,
 
+    },
+    textButtom:{
+      width:'100%',
+      textAlign:'center',
+      color:'#ffff',
+      fontSize:24,
+      fontWeight:'700'
+    },
+    click:{
+      marginLeft:-40,
+    },
+    boxuser:{
+      
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      width: 75, 
+      height: 75, 
+      borderRadius: 75 / 2, 
+      
     }
+ 
+
     
    
 
