@@ -18,14 +18,12 @@ const getData = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
-      console.log('Dữ liệu đã được tìm thấy:', value);
+     
       return value;
     } else {
-      console.log('Không có dữ liệu được lưu trữ cho khóa này.');
       return null;
     }
   } catch (error) {
-    console.error('Lỗi khi truy xuất dữ liệu:', error);
     return null;
   }
 };
@@ -34,9 +32,8 @@ const getData = async (key) => {
 const removeData = async (key) => {
   try {
     await AsyncStorage.removeItem(key);
-    console.log('Đã xóa dữ liệu thành công!');
+
   } catch (error) {
-    console.error('Lỗi khi xóa dữ liệu:', error);
   }
 };
 
@@ -44,9 +41,9 @@ const removeData = async (key) => {
 const clearAllData = async () => {
   try {
     await AsyncStorage.clear();
-    console.log('Đã xóa tất cả dữ liệu thành công!');
+    
   } catch (error) {
-    console.error('Lỗi khi xóa tất cả dữ liệu:', error);
+    
   }
 };
 
