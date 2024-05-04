@@ -109,10 +109,10 @@ export default function Home({navigation}) {
                             <Text style={styles.searchInput}>
                                 Tìm kiếm phim
                             </Text>
-                            <Icon 
                             
+                            <Icon 
                             name='magnifying-glass'
-                            size={30}
+                            size={20}
                             color={'white'}
                             
                         />

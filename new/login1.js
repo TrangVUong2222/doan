@@ -1,6 +1,4 @@
-import React, {Component, useState} from "react";
-import axios from "axios";
-import {checkUserName, checkPassWord, checkSigIn} from "../Validation/LoginValidation"
+import React, {Component, useState, useEffect} from "react";
 import {
     View,
     Text,
@@ -11,18 +9,19 @@ import {
     StyleSheet,
     StatusBar,
     SafeAreaView,
-} from 'react-native'
- 
+    KeyboardAvoidingView,
+} from 'react-native';
 
+import {checkUserName, checkPassWord, checkSigIn} from "../Validation/LoginValidation"
 
+export default Login = () =>{
 
-export default Login = ({navigation}) =>{
     const [username, setusername]  = useState('')
     const [password, setpassword] = useState('')
     const [ErrorMessUs, setErrorMessUs] = useState('')
     const [ErrorMessPW, setErrorMessPW] = useState('')
-    const [checkUs, setCheckUs] =useState(false)
-    const [checkPW, setCheckPW] = useState(false)
+    const [checkUs, setCheckUs] =useState(true)
+    const [checkPW, setCheckPW] = useState(true)
 
     const handBulerUserName=(username)=>{
         var checkuserName = checkUserName(username)
@@ -49,14 +48,21 @@ export default Login = ({navigation}) =>{
         }
     }
     
-    return(
+    
+     return(
         <ImageBackground
-            source={require('../assets/image/backgroundimg1.png')}
+            source={require('../assets/image/backgroundimg.png')}
             style= {{width:'100%', height:'100%'}}    
         >
+            
             <StatusBar barStyle={"light-content"}/>
             <SafeAreaView style= {styles.container}>
-                
+                <View style = {styles.boxImg}>
+                    <Image 
+                        style= {styles.loginimg}
+                        source={require('../assets/image/loginimg.png')}                                          
+                    />                   
+                </View>
                 <View style= {styles.boxLogo}>
                     <Image
                         style={styles.logo}
@@ -65,60 +71,76 @@ export default Login = ({navigation}) =>{
                     <Text style = {styles.logoText} >Wellcome back</Text>
                 </View>
                 <View style={styles.inputInfor}>
-                <View>{
-                    !checkUs && (<View >
-                        <Text style={styles.textvalidation}>{ErrorMessUs}</Text>
+                <View>
+                    <View>
+                        {
+                            !checkUs && (<View>
+                            <Text>{ErrorMessUs}</Text>
 
-                </View>)
-                    }
+                        </View>)
+                            
+
+                        }
 
                     </View>
+                        
                     <View style = {styles.infor}>
+
                         <Image
                             style ={[styles.icon,styles.emailicon]}
                             source={require('../assets/icon/Vector.png')}
                         />
+                        
+
+                        </View>
+                        
                         <TextInput
                             style={[styles.textInput]}
-                            placeholder="Nhập Email của bạn"
+                            placeholder="Nhập Usename của bạn"
                             placeholderTextColor="rgba(255, 255, 255, 0.8)"
                             onChangeText={text => setusername(text)}
                             onBlur={() => handBulerUserName(username)}
-
-                        />                       
+                        /> 
+                        
+                                            
                     </View>
-                    <View >
+                    <View style = {styles.infor}>
+                        <View>
                         {
                             !checkPW && (
                             <View>
-                                <Text style={styles.textvalidation}>{ErrorMessPW}</Text>
+                                <Text>{ErrorMessPW}</Text>
 
                             </View>
                             )
 
                         }
                         </View>
-                    <View style = {styles.infor}>
                         <Image
                             style ={[styles.icon,styles.passwordicon]}
                             source={require('../assets/icon/pwicon.png')}
                         />
+                        
                         <TextInput
                             style={[styles.textInput]}
                             placeholder="Mật khẩu"
                             placeholderTextColor="rgba(255, 255, 255, 0.8)"
                             onChangeText={text => setpassword(text)}
                             onBlur={()=>handBulerPassWord(password)}
-                            secureTextEntry={true}
 
                         />                       
                     </View>
                     
                 </View>
                 <View style={styles.boxLogin}>
-                    <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}  disabled={checkUs && checkPW ? false:true} style={[styles.buttomLogin]} >
+                    <TouchableOpacity 
+                        
+                        onPress={() => navigation.navigate('Home')}
+                    
+                        style={[styles.buttomLogin]}
+                    >
                         <Text style ={styles.textButtom}>
-                           Đăng Nhập
+                           Đăng nhập
                         </Text>  
                     </TouchableOpacity>
 
@@ -127,9 +149,7 @@ export default Login = ({navigation}) =>{
                             Chưa có tài khoản?
                         </Text>
                         <TouchableOpacity>
-                            <Text style={styles.singupText}onPress={()=>{
-                                navigation.navigate('Sigup');
-                              }}>Đăng ký</Text>
+                            <Text style={styles.singupText}> Đăng ký</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -165,7 +185,6 @@ const styles = StyleSheet.create({
         marginBottom:20,
         fontSize:24,
         fontWeight:'700',
-        color:'white'
     },
 
     loginimg :{ 
@@ -180,12 +199,10 @@ const styles = StyleSheet.create({
         width:'70%',
         paddingHorizontal:20,
         paddingVertical:12,
-        
     },
     infor:{
         flexDirection:'row',
         marginVertical:12,
-        
     
     },
     icon:{
@@ -204,6 +221,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:50,
         paddingHorizontal:50,
+        marginTop: 20,
         borderWidth:1,
         borderColor:'#ffff',
         borderRadius:10,
@@ -225,8 +243,7 @@ const styles = StyleSheet.create({
         borderRadius:10,
         height:50,
         justifyContent:'center',
-        backgroundColor:'red',
-        
+        backgroundColor:'#6B8E81',
     }, 
     textButtom:{
         width:'100%',
@@ -245,12 +262,10 @@ const styles = StyleSheet.create({
     },
     singupText:{
         marginLeft:5,
-        color:'red',
+        color:'#6B8E81',
         fontSize:16,
-    },
-    textvalidation:{
-        color:'red'
     }
+
 
 
 

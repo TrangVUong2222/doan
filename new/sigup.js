@@ -60,7 +60,8 @@ export default Sigup = ({navigation}) =>{
                         <TextInput
                             style={[styles.textInput]}
                             placeholder="Mật khẩu"
-                            placeholderTextColor="rgba(255, 255, 255, 0.8)"
+                            placeholderTextColor="rgba(255, 255, 255, 0.8)" 
+                            secureTextEntry={true}
 
                         />                       
                     </View>
@@ -73,6 +74,7 @@ export default Sigup = ({navigation}) =>{
                             style={[styles.textInput]}
                             placeholder="nhập lại mật khẩu"
                             placeholderTextColor="rgba(255, 255, 255, 0.8)"
+                            secureTextEntry={true}
 
                         />                       
                     </View>

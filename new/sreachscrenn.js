@@ -33,6 +33,7 @@ export default function Sreachscrenn({ navigation }) {
                             placeholder="Tìm kiếm phim"
                             placeholderTextColor="rgba(255, 255, 255, 0.8)"
                             onBlur={Keyboard.dismiss}
+                            color = 'white'
                             returnKeyType="search"
                             onSubmitEditing={() => {
                               // Xử lý tìm kiếm khi người dùng nhấn nút "Search"

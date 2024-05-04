@@ -110,10 +110,11 @@ const styles = StyleSheet.create({
         color:'white'
     },
     searchContainer: {
+        height:'100%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'flex-end',
-        
+        paddingHorizontal:10,
         width:'100%'
     },
     click:{
