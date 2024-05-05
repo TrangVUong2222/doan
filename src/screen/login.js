@@ -17,10 +17,10 @@ import {
 
 
 export default Login = ({navigation}) =>{
-    const [username, setusername]  = useState('')
-    const [password, setpassword] = useState('')
-    const [ErrorMessUs, setErrorMessUs] = useState('')
-    const [ErrorMessPW, setErrorMessPW] = useState('')
+    const [username, setusername]  = useState(null)
+    const [password, setpassword] = useState(null)
+    const [ErrorMessUs, setErrorMessUs] = useState(null)
+    const [ErrorMessPW, setErrorMessPW] = useState(null)
     const [checkUs, setCheckUs] =useState(false)
     const [checkPW, setCheckPW] = useState(false)
 
@@ -31,7 +31,7 @@ export default Login = ({navigation}) =>{
             setCheckUs(false)
         }
         else{setCheckUs(true)
-            setErrorMessUs("")
+            setErrorMessUs(null)
             
         }
     }
@@ -44,7 +44,7 @@ export default Login = ({navigation}) =>{
         }
 
         else{setCheckPW(true)
-            setErrorMessPW('')
+            setErrorMessPW(null)
         
         }
     }

@@ -78,13 +78,13 @@ const checkConfirmpw = (password, comfrimpw)=>{
     if (valuetrim != password){
         return String("Khong trung khop voi mat khau!")
     }
-    else{
+    
         return true
-    }
+    
 
 }
 
-const checkEmail =(value) =>{
+const checkEmail =  (value) =>{
     var valuetrim = trimvalue(value)
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (valuetrim.match(validRegex)) {

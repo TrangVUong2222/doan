@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import {
     View,
     Text,
@@ -10,8 +10,71 @@ import {
     StatusBar,
     SafeAreaView,
 } from 'react-native'
-
+import {checkUserName, checkPassWord, checkConfirmpw, checkEmail} from "../Validation/LoginValidation"
 export default Sigup = ({navigation}) =>{
+
+    const [username, setusername]  = useState(null)
+    const [password, setpassword] = useState(null)
+    const [confirmpw, setComfirmpw] = useState(null)
+    const [email, setEmail] = useState(null)
+    const [ErrorMessUs, setErrorMessUs] = useState(null)
+    const [ErrorMessEmail, setErrorMessEmail] = useState(null)
+    const [ErrorMessCFpw, setErrorMessCFpw] = useState(null)
+    const [ErrorMessPW, setErrorMessPW] = useState(null)
+    const [checkUs, setCheckUs] =useState(false)
+    const [checkPW, setCheckPW] = useState(false)
+    const [checkCfpw,setCheckCFpw] = useState(false)
+    const [checkemail, setCheckEmail] =useState(false)
+
+    const handBulerUserName=(username)=>{
+        var checkuserName = checkUserName(username)
+        if (checkuserName != true){
+            setErrorMessUs(checkuserName)
+            setCheckUs(false)
+        }
+        else{setCheckUs(true)
+            setErrorMessUs(null)
+            
+        }
+    }
+    const handBulerEmail=(email)=>{
+        var checkemail = checkEmail(email)
+        if (checkemail != true){
+            setErrorMessEmail(checkEmail)
+            setCheckEmail(false)
+        }
+        else{
+            setCheckEmail(true)
+            setErrorMessEmail(null)
+            
+        }
+    }
+   
+    const handBulerPassWord=(password)=>{
+        var checkpassWord = checkPassWord(password)
+        if (checkpassWord != true){
+            setErrorMessPW(checkpassWord)
+            setCheckPW(false)
+        }
+
+        else{setCheckPW(true)
+            setErrorMessPW(null)
+        
+        }
+    }
+    const handBulerCFPassWord=(confirmpw, password)=>{
+        var checkCfpw = checkConfirmpw(confirmpw, password)
+        if (checkCfpw != true){
+            setErrorMessCFpw(checkCfpw)
+            setCheckCFpw(false)
+        }
+
+        else{setCheckCFpw(true)
+            setErrorMessCFpw(null)
+        
+        }
+    }
+
     return(
         <ImageBackground
             source={require('../assets/image/backgroundimg1.png')}
@@ -28,17 +91,35 @@ export default Sigup = ({navigation}) =>{
                     
                 </View>
                 <View style={styles.inputInfor}>
+                    <View>{
+                    !checkUs && (<View >
+                        <Text style={styles.textvalidation}>{ErrorMessUs}</Text>
+
+                    </View>)
+                            }
+
+                    </View>
                     <View style = {styles.infor}>
                         <Image
-                            style ={[styles.icon,styles.emailicon]}
+                            style ={[styles.icon]}
                             source={require('../assets/icon/usnameicon.png')}
                         />
                         <TextInput
                             style={[styles.textInput]}
                             placeholder="Tên hiển thị"
                             placeholderTextColor="rgba(255, 255, 255, 0.8)"
+                            onChangeText={text => setusername(text)}
+                            onBlur={() => handBulerUserName(username)}
 
                         />                       
+                    </View>
+                    <View>{
+                    !checkemail && (<View >
+                        <Text style={styles.textvalidation}>{ErrorMessEmail}</Text>
+
+                    </View>)
+                            }
+
                     </View>
                     <View style = {styles.infor}>
                         <Image
@@ -49,8 +130,18 @@ export default Sigup = ({navigation}) =>{
                             style={[styles.textInput]}
                             placeholder="Nhập Email của bạn"
                             placeholderTextColor="rgba(255, 255, 255, 0.8)"
+                            onChangeText={text => setEmail(text)}
+                            onBlur={() => handBulerEmail(email)}
 
                         />                       
+                    </View>
+                    <View>{
+                    !checkPW && (<View >
+                        <Text style={styles.textvalidation}>{ErrorMessPW}</Text>
+
+                    </View>)
+                            }
+
                     </View>
                     <View style = {styles.infor}>
                         <Image
@@ -61,9 +152,19 @@ export default Sigup = ({navigation}) =>{
                             style={[styles.textInput]}
                             placeholder="Mật khẩu"
                             placeholderTextColor="rgba(255, 255, 255, 0.8)" 
+                            onChangeText={text => setpassword(text)}
+                            onBlur={() => handBulerPassWord(password)}
                             secureTextEntry={true}
 
                         />                       
+                    </View>
+                    <View>{
+                    !checkCfpw && (<View >
+                        <Text style={styles.textvalidation}>{ErrorMessCFpw}</Text>
+
+                    </View>)
+                            }
+
                     </View>
                     <View style = {styles.infor}>
                         <Image
@@ -74,6 +175,8 @@ export default Sigup = ({navigation}) =>{
                             style={[styles.textInput]}
                             placeholder="nhập lại mật khẩu"
                             placeholderTextColor="rgba(255, 255, 255, 0.8)"
+                            onChangeText={text => setComfirmpw(text)}
+                            onBlur={() => handBulerCFPassWord(confirmpw, password)}
                             secureTextEntry={true}
 
                         />                       
@@ -81,9 +184,9 @@ export default Sigup = ({navigation}) =>{
                     
                 </View>
                 <View style={styles.boxLogin}>
-                    <TouchableOpacity  onPress={()=>{
-                                navigation.navigate('HomeStack');
-                              }} style={[styles.buttomLogin]} >
+                    <TouchableOpacity disabled={checkUs && checkemail && checkCfpw && checkPW ? false:true} onPress={()=>{
+                                navigation.navigate('HomeStack') ;
+                            }} style={[styles.buttomLogin]} >
                         <Text style ={styles.textButtom}>
                               
                            Đăng ký
@@ -215,6 +318,9 @@ const styles = StyleSheet.create({
         marginLeft:5,
         color:'red',
         fontSize:16,
+    },
+    textvalidation:{
+        color: 'red'
     }
 
 

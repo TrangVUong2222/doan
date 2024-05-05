@@ -11,14 +11,14 @@ import {
     SafeAreaView,
     ScrollView,
     Dimensions,
-} from 'react-native'
-import detailMovie from "./detailMovie";
-
+} from 'react-native';
+import ViewSession  from '../Component/ViewSession'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const heightPoster = windowWidth / 1.8;
 const gioithieu = 'gioithieu';
 const dienvien = 'dienvien';
+
 
 const ViewGioiThieu = () =>{
     return(
@@ -41,18 +41,15 @@ const ViewDienvien = () =>{
     )
 }
 
+
+
 export default function SeriMovie({ navigation }) {
-    const [isPickLoveClicked, setIsPickLoveClicked] = useState(false);
-    const [isAddPickClicked, setIsAddPickClicked] = useState(false);
+   
     const [clicktitle, setClicktitle] = useState(gioithieu);
 
-    const handlePickLoveClick = () => {
-        setIsPickLoveClicked(!isPickLoveClicked);
-    };
+   
 
-    const handleAddPickClick = () => {
-        setIsAddPickClicked(!isAddPickClicked);
-    };
+    
 
     const [imgList, setImgList] = useState([]);
     const [imgContentList, setImgContentList] = useState([]);
@@ -108,16 +105,9 @@ export default function SeriMovie({ navigation }) {
                         </TouchableOpacity>
                     </View> 
                     <Text style={styles.textHeader}>Chi tiết</Text>
-                    <TouchableOpacity style={styles.picklove} onPress={handlePickLoveClick}>
-                        <Icon
-                            name='heart'
-                            size={30}
-                            color={isPickLoveClicked ? 'white' : 'red'}
-                        />
-                    </TouchableOpacity>
+                   <View></View>
                 </View>
-                
-                
+                               
                 <View style={styles.boxbody}>
                     <View style={styles.imgPlace}>
                         <Image
@@ -131,13 +121,7 @@ export default function SeriMovie({ navigation }) {
                                 <Text numberOfLines={2}  style={styles.name}>{shortenText("Mật vụ ong", 25)}</Text>
                             </View>
                             <View style={styles.addpick}>
-                                <TouchableOpacity onPress={handleAddPickClick}>
-                                    <Icon
-                                        name='plus'
-                                        size={30}
-                                        color={isAddPickClicked ? 'white' : 'red'}
-                                    />
-                                </TouchableOpacity>
+                            
                             </View>
                         </View>
                         <View style={styles.boxinfo}>
@@ -161,8 +145,19 @@ export default function SeriMovie({ navigation }) {
                         </View>
                     </View>
                 </View>
-                
-                <View style={styles.bodyunder}>
+
+
+                {/* xu ly hien thi o day */}
+
+                <View >  
+                    
+                    <Text style ={{color :'red'}}>Xu ly hien thi phan phim o day</Text>
+
+                   
+                </View>
+               
+                {/* Xử lý hiện thị tập phim ở đây */}
+                <View style={styles.bodyunder}> 
                     
                     <ScrollView style={styles.scrollepisode}>
                     <View style={styles.episode}>
@@ -249,9 +244,10 @@ export default function SeriMovie({ navigation }) {
                             <Text style={styles.topPicText}>
                                 Giới thiệu
                             </Text>
+                            { (clicktitle == gioithieu) &&(
                             <Image
                                 source={require('../assets/icon/line4.png')}
-                            />
+                            />)}
                         </View>
                         </TouchableOpacity>
                        
@@ -264,10 +260,12 @@ export default function SeriMovie({ navigation }) {
                             <Text style={styles.topPicText}>
                                 Diễn viên
                             </Text>
+                            { (clicktitle == dienvien) &&(
                             <Image
                                 source={require('../assets/icon/line4.png')}
-                            />
+                            />)}
                         </View>
+                        
                         </TouchableOpacity>
                             
                             
@@ -399,16 +397,17 @@ const styles = StyleSheet.create({
     middleBox:{
         marginTop:5,
         width:'100%',
+        
     },
     topPic:{
         flexDirection:'row',
         width:'100%',
-        justifyContent:'space-around',
-        alignItems:'center',
+        justifyContent:'center'
         
 
     },
     topPicItem:{
+        marginHorizontal: 50
       
     },
     topPicText:{
@@ -444,7 +443,6 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         justifyContent:'center',
         alignItems:'center',
-
     },
     textButtonTap:{
         color:'#ffff',
@@ -460,6 +458,7 @@ const styles = StyleSheet.create({
         color:'white'
     },
     viewtitle:{
+        width:'100%',
         paddingHorizontal:30,
         marginTop:15
     },

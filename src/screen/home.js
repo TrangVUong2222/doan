@@ -135,7 +135,7 @@ export default function Home({navigation}) {
                     <View style={styles.boxSlide}>
                         <FlatList
                             horizontal={true}
-                            numColumns={1}
+                            numColumns={1} 
                             keyExtractor={(item, index) => index.toString()}
                             data={imgList}
                             renderItem={({ item }) => (
