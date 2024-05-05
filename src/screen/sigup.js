@@ -9,8 +9,10 @@ import {
     StyleSheet,
     StatusBar,
     SafeAreaView,
+    Modal
 } from 'react-native'
-import {checkUserName, checkPassWord, checkConfirmpw, checkEmail} from "../Validation/LoginValidation"
+import {checkUserName, checkPassWord, checkConfirmpw, checkEmail} from "../Validation/LoginValidation";
+import {ModalSigup} from '../Component/ModalSigup';
 export default Sigup = ({navigation}) =>{
 
     const [username, setusername]  = useState(null)
@@ -25,6 +27,15 @@ export default Sigup = ({navigation}) =>{
     const [checkPW, setCheckPW] = useState(false)
     const [checkCfpw,setCheckCFpw] = useState(false)
     const [checkemail, setCheckEmail] =useState(false)
+    const [isModalVisible, setIsMoDalVisible] =useState(false)
+    
+    const changeModalVisible = (bool) => {
+        setIsMoDalVisible(bool)
+    }
+    const toggleModalAndNavigate = () => {
+        setIsMoDalVisible(false); 
+        navigation.navigate('HomeStack'); 
+    }
 
     const handBulerUserName=(username)=>{
         var checkuserName = checkUserName(username)
@@ -184,14 +195,20 @@ export default Sigup = ({navigation}) =>{
                     
                 </View>
                 <View style={styles.boxLogin}>
-                    <TouchableOpacity disabled={checkUs && checkemail && checkCfpw && checkPW ? false:true} onPress={()=>{
-                                navigation.navigate('HomeStack') ;
-                            }} style={[styles.buttomLogin]} >
+                    <TouchableOpacity disabled={checkUs && checkemail && checkCfpw && checkPW ? false:true} 
+                    onPress={() => changeModalVisible(true)} style={[styles.buttomLogin]} >
                         <Text style ={styles.textButtom}>
-                              
                            Đăng ký
                         </Text>  
                     </TouchableOpacity>
+                    <Modal
+                        transparent = {true}
+                        animationType = 'fade'
+                        visible ={isModalVisible}
+                        onRequestClose={() => changeModalVisible(false)}
+                    >
+                        <ModalSigup navigation={navigation} toggleModalAndNavigate={toggleModalAndNavigate} />
+                    </Modal>
 
                     <View style = {styles.textBox} >
                         <Text style ={styles.questionText}>

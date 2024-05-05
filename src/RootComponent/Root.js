@@ -15,6 +15,8 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import serimovie from '../screen/serimovie.js';
 import picklove from '../screen/picklove.js';
 import viewall from '../screen/viewall.js';
+import {ModalSigup} from '../Component/ModalSigup.js';
+
 
 
 
@@ -86,6 +88,7 @@ const StackNavigator = () => {
       <Stack.Screen name="DetailMovie" component={detailMovie} />
       <Stack.Screen name="Sreachscrenn" component={Sreachscrenn} />
       <Stack.Screen name="Viewall" component={viewall} />
+      <Stack.Screen name="ModalSigup" component={ModalSigup} />
     </Stack.Navigator>
   );
 }
