@@ -85,9 +85,12 @@ const checkConfirmpw = (password, comfrimpw)=>{
 }
 
 const checkEmail =  (value) =>{
-    var valuetrim = trimvalue(value)
+    var Emty = checkEmpty(value)
+    if(Emty !=true){
+        return Emty
+    }
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (valuetrim.match(validRegex)) {
+    if (value.match(validRegex)) {r
     
         return true;
     

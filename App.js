@@ -5,6 +5,6 @@ import DetailMovie from "./src/screen/detailMovie.js";
 
 export default function App() {
   return (
-    <DetailMovie/>
+    <RootComponent/>
   );
 }
