@@ -143,7 +143,7 @@ export default function Home({navigation}) {
                                     <TouchableOpacity onPress={()=>{
                                     navigation.navigate('Serimovie')}}>
                                         <Image
-                                            style={[styles.image1, {marginRight: 15}]} // Thêm marginRight vào style của ảnh
+                                            style={[styles.image1, {marginRight: 15}]} 
                                             source={item.img}
                                             pagingEnabled={true}
                                         />

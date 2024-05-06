@@ -16,6 +16,7 @@ import serimovie from '../screen/serimovie.js';
 import picklove from '../screen/picklove.js';
 import viewall from '../screen/viewall.js';
 import {ModalSigup} from '../Component/ModalSigup.js';
+import ListEmpisodes from '../Component/ListEpisodes.js';
 
 
 
@@ -69,6 +70,7 @@ function MyTabs() {
             backgroundColor: 'green',
           },
         }} />
+      
 
     </Tab.Navigator>
   );
@@ -76,7 +78,7 @@ function MyTabs() {
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="HomeStack" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Serimovie" component={serimovie} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Sigup" component={sigup} />

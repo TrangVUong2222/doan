@@ -96,19 +96,24 @@ const styles = StyleSheet.create({
        bottom: 10,    
     },
     boxcomment:{
-        width:'100%',
+        flex:1,
+        // width:'100%',
         marginTop:20,
-        height:"500",
-        backgroundColor:'#252525',
-        paddingHorizontal:20
+        height:"auto",
+        backgroundColor:'#1b1b1b',
+        paddingHorizontal:20,
+        borderRadius:10
     },
     HeadingTextComment:{
-        color:'red',
-        fontSize:20
+        color:'white',
+        fontSize:20,
+        
+        
     
     },
-    AddComment:{
-        marginTop:10
+    AddCommentBox:{
+        marginTop:10,
+        paddingHorizontal: 10,
     },
     AddcmHeader:{
         flexDirection:'row',
@@ -118,11 +123,15 @@ const styles = StyleSheet.create({
         marginTop:10,
         textAlignVertical:'center',
         color: "#ffff",
-        marginLeft:20
+        marginLeft:20,
+        fontWeight:"500",
+        opacity: 0.7,
     },
     AddRate:{
-        marginTop:15,
-        flexDirection:'row'
+        marginTop:10,
+        flexDirection:'row',
+        opacity: 0.7,
+        
     },
     RateText:{
         color:"#ffff",
@@ -130,21 +139,23 @@ const styles = StyleSheet.create({
     },
     RateValue:{
         borderWidth:1,
+        height:20,
         width:50,
         borderColor:'#f2f2f2'
         
     },
+
     BoxContent:{
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth:1,
         borderColor: "#ffff",
-        marginVertical: 10
+        marginVertical: 10,
 
     },
     CommentText:{
         marginTop: 20,
         width: '100%',
-        height: 40,
+        height: 30,
         maxHeight: 100,
         borderRadius: 20,
         marginBottom: 20,
@@ -155,7 +166,76 @@ const styles = StyleSheet.create({
         position:"absolute",
         bottom:8,
         right:10,
+    },
+    ItemRightSub:{
+        flexDirection:'row',
+        marginLeft:10,
+        height:'auto'
+
+    },
+    ItemRight:{
+        flexDirection:'column'
+    },
+    ItemInfor:{
+        flexDirection:'row',
+        marginVertical: 10,
+    },
+    textComment:{
+        fontSize:15,
+        color:"#ffff",
+        opacity: 0.7
+    },
+    CommentItem:{
+        paddingHorizontal: 10,
+        width:'100%',
+        borderRadius: 5,
+        height:100,
+        marginVertical: 5,
+        backgroundColor: "#3E3939"
+
+    },
+    UserNameListCmt:{
+        color: "#ffff",
+        opacity: 0.7,
+        fontSize: 15,
+        fontWeight:"500",
+        marginBottom: 5,
+
+
+    },
+    ItemCommentContent:{
+        height: "auto",
+        paddingHorizontal: 5
+    },
+    UserRated:{
+        fontSize: 15,
+        color:"orange",
+        marginRight: 5,
+    },
+    bodyunder:{
+        width:"100%",
+        height:90,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    CommentList:{
+        flex:1
+    },
+    boxclick:{
+        justifyContent:'space-between',
+        flexDirection:'row',
+        marginTop:10
+    },
+    textdanhgia:{
+        color:'white',
+        fontSize:18
+        
+    },
+    rate:{
+        marginLeft:15
     }
+
+
 
 
     

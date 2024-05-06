@@ -13,6 +13,7 @@ import {
     Dimensions,
 } from 'react-native';
 import ViewSession  from '../Component/ViewSession'
+import ListEmpisodes from "../Component/ListEpisodes";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const heightPoster = windowWidth / 1.8;
@@ -44,12 +45,29 @@ const ViewDienvien = () =>{
 
 
 export default function SeriMovie({ navigation }) {
-   
-    const [clicktitle, setClicktitle] = useState(gioithieu);
 
-   
-
+    const data = [
+        { id: 1, name: 'Episode 1' },
+        { id: 2, name: 'Episode 2' },
+        { id: 3, name: 'Episode 3' },
+        { id: 4, name: 'Episode 1' },
+        { id: 5, name: 'Episode 2' },
+        { id: 6, name: 'Episode 3' },
+        { id: 7, name: 'Episode 1' },
+        { id: 8, name: 'Episode 2' },
+        { id: 9, name: 'Episode 3' },
+        
+    ];
+    const data1 = [
+        { id: 1, name: 'Session 1' },
+        { id: 2, name: 'Session 2' },
+        { id: 3, name: 'Session 3' },
+        { id: 4, name: 'Session 4' },
+        
+    ];
     
+
+    const [clicktitle, setClicktitle] = useState(gioithieu);
 
     const [imgList, setImgList] = useState([]);
     const [imgContentList, setImgContentList] = useState([]);
@@ -145,96 +163,18 @@ export default function SeriMovie({ navigation }) {
                         </View>
                     </View>
                 </View>
-
-
-                {/* xu ly hien thi o day */}
-
                 <View >  
                     
-                    <Text style ={{color :'red'}}>Xu ly hien thi phan phim o day</Text>
+                    <ViewSession data={data1}/>
 
                    
                 </View>
                
-                {/* Xử lý hiện thị tập phim ở đây */}
+             
                 <View style={styles.bodyunder}> 
                     
-                    <ScrollView style={styles.scrollepisode}>
-                    <View style={styles.episode}>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 1</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 2</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 3</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 4</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 5</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 6</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 7</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 8</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 9</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 10</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 11</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 12</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 13</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 14</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 15</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 16</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 17</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 18</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 19</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 20</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 21</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 22</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 23</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')} style={styles.clickepisode}>
-                        <Text style={styles.textepisode}>Tập 24</Text>
-                    </TouchableOpacity>
-                    </View>
-                    </ScrollView>
+                    <ListEmpisodes navigation={navigation} data={data}/>
+                    
                 </View>
                 <View style={styles.middleBox}>
 
@@ -245,9 +185,7 @@ export default function SeriMovie({ navigation }) {
                                 Giới thiệu
                             </Text>
                             { (clicktitle == gioithieu) &&(
-                            <Image
-                                source={require('../assets/icon/line4.png')}
-                            />)}
+                           <View style={styles.line}></View>)}
                         </View>
                         </TouchableOpacity>
                        
@@ -261,9 +199,8 @@ export default function SeriMovie({ navigation }) {
                                 Diễn viên
                             </Text>
                             { (clicktitle == dienvien) &&(
-                            <Image
-                                source={require('../assets/icon/line4.png')}
-                            />)}
+                            <View style={styles.line}></View>
+                            )}
                         </View>
                         
                         </TouchableOpacity>
@@ -375,7 +312,9 @@ const styles = StyleSheet.create({
     },
     bodyunder:{
         width:"100%",
-        height:200
+        height:90,
+        justifyContent:'center',
+        alignItems:'center'
     },
     clickepisode:{
         backgroundColor:'#808090',
@@ -395,7 +334,7 @@ const styles = StyleSheet.create({
         color:'white',
     },
     middleBox:{
-        marginTop:5,
+        marginTop:30,
         width:'100%',
         
     },
@@ -462,6 +401,15 @@ const styles = StyleSheet.create({
         paddingHorizontal:30,
         marginTop:15
     },
+    row:{
+       width:'100%',flexDirection: "row", flexWrap:"Wrap"
+    },
+    line:{
+        backgroundColor:'red',
+        height:3,
+        borderRadius:10,
+        
+    }
     
 
    
