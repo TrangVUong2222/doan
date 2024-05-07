@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
     },
     imgLogo:{
-        width:44,
+        width:45,
         height:40,
         resizeMode:'contain',
     },
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         resizeMode:'contain'
     },
     boxSlide: {
-        height: 400,
+        height:520,
         marginTop: 15,
     },
    
@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
 
     },
     image1: {
-        width: 320,
-        height: 600,
+        width: 300,
+        height: 500,
         borderRadius: 5,
         marginRight: 15 
     },
@@ -143,13 +143,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     image2:{
-        height:160,
+        height:166,
         width:100,
         marginLeft: 15, 
         borderRadius:5,
     },
     title:{
-        marginTop: 25,
+        marginTop: 10,
         width:"100%",
         height:50,
         justifyContent:'space-between',

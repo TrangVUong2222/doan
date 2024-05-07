@@ -60,7 +60,7 @@ export default Login = ({navigation}) =>{
                 <View style= {styles.boxLogo}>
                     <Image
                         style={styles.logo}
-                        source={require('../assets/icon/logo.png')}
+                        source={require('../assets/icon/logo1.png')}
                     />
                     <Text style = {styles.logoText} >Wellcome back</Text>
                 </View>
@@ -250,6 +250,10 @@ const styles = StyleSheet.create({
     },
     textvalidation:{
         color:'red'
+    },
+    logo:{
+        width:100,
+        height:100
     }
 
 

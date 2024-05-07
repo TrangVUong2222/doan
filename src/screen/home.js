@@ -100,7 +100,7 @@ export default function Home({navigation}) {
                     >
                         <Image
                             style={styles.imgLogo}
-                            source={require('../assets/icon/logo.png')}
+                            source={require('../assets/icon/logo1.png')}
                         />
                     </View>
                     <View style={styles.boxsreach}>

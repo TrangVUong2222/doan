@@ -2,14 +2,14 @@ import react, {component} from 'react'
 
 const checkEmpty =(value) =>{
     if (value == null || value ==''){
-        return String("khong duoc de trong")
+        return String("Không được để trống")
     }
     return true
 }
 const checkLength = (value, min,max)=>{
 
     if (value.length < min || value.length > max){
-        return String(`So luong ki tu phai nam tu ${min} toi ${max}`)
+        return String(`Số lượng ký tự phải nằm từ ${min} tới ${max}`)
     }
     else{
         return true
@@ -76,7 +76,7 @@ const checkConfirmpw = (password, comfrimpw)=>{
         return checklength
     }
     if (valuetrim != password){
-        return String("Khong trung khop voi mat khau!")
+        return String("Không trùng khớp với mật khẩu !")
     }
     
         return true

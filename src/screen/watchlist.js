@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, {Component ,useState} from "react";
+import Icon from 'react-native-vector-icons/FontAwesome6';
 import {
     View,
     Text,
@@ -11,8 +12,38 @@ import {
     SafeAreaView,
     ScrollView,
 } from 'react-native'
+import ListView from "../Component/ListView";
+import { ModalDelete } from "../Component/ModalDelete";
 
 export default Watchlist = ({navigation}) =>{
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
+    const data = [
+        {
+            id: 1,
+            img: require('../assets/image/51.png'),
+            MovieName: 'VƯƠNG TRIỀU XÁC SỐNG 1',
+            rate: 4.5,
+            category: 'Hành Động, Phiêu Lưu, Hài Hước, Viễn Tưởng',
+            year: '2016',
+            time: '119 phút',
+            tap: 'Tập 1'
+        },
+        {
+            id: 2,
+            img: require('../assets/image/51.png'),
+            MovieName: 'VƯƠNG TRIỀU XÁC SỐNG 2',
+            rate: 4.0,
+            category: 'Hành Động, Phiêu Lưu, Hài Hước, Viễn Tưởng',
+            year: '2016',
+            time: '119 phút',
+            tap: 'Tập 2'
+        },
+        // Thêm các mục khác nếu cần
+    ];
     return(
         <ImageBackground
             source={require('../assets/image/backgroundimg1.png')}
@@ -24,9 +55,10 @@ export default Watchlist = ({navigation}) =>{
             <StatusBar barStyle={"light-content"}/>
                 <View style={styles.heading}>
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        <Image
-                            style={styles.Imgbackicon}
-                            source={require('../assets/icon/backicon.png')}
+                        <Icon
+                            name='chevron-left'
+                            size={25}
+                            color={'white'}
                         />
                     </TouchableOpacity>
                     
@@ -34,209 +66,11 @@ export default Watchlist = ({navigation}) =>{
                         <Text style={styles.textHeading} >
                             Xem sau
                         </Text>
+                    <View></View>
                 </View>
-                <ScrollView style={styles.scrollView}>
-                <View style={styles.boxlist}>
-                <TouchableOpacity onPress={() => navigation.navigate('DetailMovie')}>
-                    <View style={styles.boxItem}>
-                        <Image
-                        style={styles.imgitem}
-                        source={require('../assets/image/51.png')}
-                        />
-                        <View style={styles.info}>
-                            <Text style={styles.textName}>
-                                One Piece
-                            </Text>
-                            <View style={styles.rowstar}>
-                                <Image
-                                    style={styles.iconstart}
-                                    source={require('../assets/icon/Star.png')}
-                                />
-                                <Text style={styles.numbeStar}>
-                                    9
-                                </Text>
-                            </View>
-                            <View style={styles.rowCategory}>
-                                <Image
-                                    style={styles.iconCategory}
-                                    source={require('../assets/icon/Stackofpapers.png')}
-                                />
-                                <Text style={styles.textCategory}>
-                                    Anime
-                                </Text>
-                            </View>
-                            <View style={styles.rowDate}>
-                                <Image
-                                    style={styles.iconDate}
-                                    source={require('../assets/icon/year.png')}
-                                />
-                                <Text style={styles.textDate}>
-                                    1999
-                                </Text>
-                            </View>
-                            <View style={styles.rowTime}>
-                                <Image
-                                    style={styles.iconTime}
-                                    source={require('../assets/icon/Wallclock.png')}
-                                />
-                                <Text style={styles.textTime}>
-                                    24min
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Serimovie')}>
-                    <View style={styles.boxItem}>
-                        <Image
-                        style={styles.imgitem}
-                        source={require('../assets/image/51.png')}
-                        />
-                        <View style={styles.info}>
-                            <Text style={styles.textName}>
-                                One Piece
-                            </Text>
-                            <View style={styles.rowstar}>
-                                <Image
-                                    style={styles.iconstart}
-                                    source={require('../assets/icon/Star.png')}
-                                />
-                                <Text style={styles.numbeStar}>
-                                    9
-                                </Text>
-                            </View>
-                            <View style={styles.rowCategory}>
-                                <Image
-                                    style={styles.iconCategory}
-                                    source={require('../assets/icon/Stackofpapers.png')}
-                                />
-                                <Text style={styles.textCategory}>
-                                    Anime
-                                </Text>
-                            </View>
-                            <View style={styles.rowDate}>
-                                <Image
-                                    style={styles.iconDate}
-                                    source={require('../assets/icon/year.png')}
-                                />
-                                <Text style={styles.textDate}>
-                                    1999
-                                </Text>
-                            </View>
-                            <View style={styles.rowTime}>
-                                <Image
-                                    style={styles.iconTime}
-                                    source={require('../assets/icon/Wallclock.png')}
-                                />
-                                <Text style={styles.textTime}>
-                                    24min
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Serimovie')}>
-                    <View style={styles.boxItem}>
-                        <Image
-                        style={styles.imgitem}
-                        source={require('../assets/image/51.png')}
-                        />
-                        <View style={styles.info}>
-                            <Text style={styles.textName}>
-                                One Piece
-                            </Text>
-                            <View style={styles.rowstar}>
-                                <Image
-                                    style={styles.iconstart}
-                                    source={require('../assets/icon/Star.png')}
-                                />
-                                <Text style={styles.numbeStar}>
-                                    9
-                                </Text>
-                            </View>
-                            <View style={styles.rowCategory}>
-                                <Image
-                                    style={styles.iconCategory}
-                                    source={require('../assets/icon/Stackofpapers.png')}
-                                />
-                                <Text style={styles.textCategory}>
-                                    Anime
-                                </Text>
-                            </View>
-                            <View style={styles.rowDate}>
-                                <Image
-                                    style={styles.iconDate}
-                                    source={require('../assets/icon/year.png')}
-                                />
-                                <Text style={styles.textDate}>
-                                    1999
-                                </Text>
-                            </View>
-                            <View style={styles.rowTime}>
-                                <Image
-                                    style={styles.iconTime}
-                                    source={require('../assets/icon/Wallclock.png')}
-                                />
-                                <Text style={styles.textTime}>
-                                    24min
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Serimovie')}>
-                    <View style={styles.boxItem}>
-                        <Image
-                        style={styles.imgitem}
-                        source={require('../assets/image/51.png')}
-                        />
-                        <View style={styles.info}>
-                            <Text style={styles.textName}>
-                                One Piece
-                            </Text>
-                            <View style={styles.rowstar}>
-                                <Image
-                                    style={styles.iconstart}
-                                    source={require('../assets/icon/Star.png')}
-                                />
-                                <Text style={styles.numbeStar}>
-                                    9
-                                </Text>
-                            </View>
-                            <View style={styles.rowCategory}>
-                                <Image
-                                    style={styles.iconCategory}
-                                    source={require('../assets/icon/Stackofpapers.png')}
-                                />
-                                <Text style={styles.textCategory}>
-                                    Anime
-                                </Text>
-                            </View>
-                            <View style={styles.rowDate}>
-                                <Image
-                                    style={styles.iconDate}
-                                    source={require('../assets/icon/year.png')}
-                                />
-                                <Text style={styles.textDate}>
-                                    1999
-                                </Text>
-                            </View>
-                            <View style={styles.rowTime}>
-                                <Image
-                                    style={styles.iconTime}
-                                    source={require('../assets/icon/Wallclock.png')}
-                                />
-                                <Text style={styles.textTime}>
-                                    24min
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    </TouchableOpacity>
-
-                </View>
-                </ScrollView>
-               
+                
+                <ListView  navigation={navigation} data={data} toggleModal={toggleModal} />
+                <ModalDelete isVisible={isModalVisible} toggleModal={toggleModal} />
 
 
         
@@ -250,79 +84,20 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         flexDirection: 'column',
-        alignItems:'center',
+      
     },
     heading:{
-        width:"100%",
-        height:'10%',
-      
+        marginTop:20,
+        alignItems:'center',
+        justifyContent:'space-around',
         flexDirection:'row',
-        alignItems:'center'
     },
     textHeading:{
-        marginLeft:120,
         fontSize:24,
         color:'white'
     },
-    Imgbackicon:{
-        marginLeft:36,
-    },
-    boxItem:{
-        flexDirection:'row',
-        justifyContent:'center',
-        marginTop:30,
-        marginLeft:-45,
-    },
-    info:{
-        marginLeft:26,
-    },
-    imgitem:{
-        borderRadius:15,
-    },
-    textName:{
-        fontSize:25,
-        color:'white',
-        marginLeft:8,
-    },
-    numbeStar:{
-        color:'#FF8700',
-        fontSize:15,
-        marginLeft:8,
-    },
-    textCategory:{
-        color:'white',
-        fontSize:15,
-        marginLeft:8,
-    },
-    textDate:{
-        color:'white',
-        fontSize:15,
-        marginLeft:8,
-    },
-    textTime:{
-        color:'white',
-        fontSize:15,
-        marginLeft:8,
-    },
-    rowstar:{
-        flexDirection:'row',
-        marginTop:10,
-    },
-    rowCategory:{
-        flexDirection:'row',
-        marginTop:10,
-    },
-    rowDate:{
-        flexDirection:'row',
-        marginTop:10,
-    },
-    rowTime:{
-        flexDirection:'row',
-        marginTop:10,
-    },
-    scrollView:{
-        width:'100%'
-    },
+    
+    
     
 
 })

@@ -97,7 +97,7 @@ export default Sigup = ({navigation}) =>{
                 <View style= {styles.boxLogo}>
                     <Image
                         style={styles.logo}
-                        source={require('../assets/icon/logo.png')}
+                        source={require('../assets/icon/logo1.png')}
                     />
                     
                 </View>
@@ -338,6 +338,10 @@ const styles = StyleSheet.create({
     },
     textvalidation:{
         color: 'red'
+    },
+    logo:{
+        height:100,
+        width:100
     }
 
 

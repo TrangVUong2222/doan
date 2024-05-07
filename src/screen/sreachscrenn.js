@@ -13,6 +13,7 @@ import {
     ScrollView,
     Dimensions,
     TextInput,
+    FlatList
 } from 'react-native'
 
 
@@ -20,7 +21,72 @@ import {
 
 
 export default function Sreachscrenn({ navigation }) {
-    
+    const [imgList, setImgList] = useState([]);
+    const [imgContentList, setImgContenList] = useState([]);
+    useEffect(() => {
+        const data = [
+            {
+                img: require('../assets/image/121.png')
+            },
+            {
+                img: require('../assets/image/121.png')
+            },
+            {
+                img: require('../assets/image/121.png')
+            },
+            {
+                img: require('../assets/image/121.png')
+            },
+            {
+                img: require('../assets/image/121.png')
+            },
+        ];
+        setImgList(data);
+    }, []);
+    useEffect(() => {
+        const dataContent = [
+            { 
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+            {
+                image: require('../assets/image/51.png')
+            },
+        ];
+        setImgContenList(dataContent);
+
+    }, [])
+
+
 
     return (
         <ImageBackground
@@ -49,6 +115,23 @@ export default function Sreachscrenn({ navigation }) {
                     </TouchableOpacity>
                     
                 </View>
+                <View>
+                    <FlatList
+                        numColumns={2}
+                        keyExtractor={(item, index) => index.toString()} 
+                        data={imgList}
+                        contentContainerStyle={styles.flatListContainer}
+                        renderItem={({ item }) => (
+                        <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate('Serimovie')}>
+                            <Image
+                              style={styles.image2}
+                              source={item.img}
+                            />
+                        </TouchableOpacity>
+                        )}
+                    />
+                
+                </View>   
             </SafeAreaView>
         </ImageBackground>
     )
@@ -82,6 +165,9 @@ const styles = StyleSheet.create({
     textclickback:{
         color:'white'
     },
+    TouchableOpacity:{
+        margin:20
+    }
     
 
 

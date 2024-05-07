@@ -130,7 +130,7 @@ export default function Viewall ({navigation}) {
                     />
                     </View>
                 </View>
-
+                     
 
 
 

@@ -17,10 +17,7 @@ import picklove from '../screen/picklove.js';
 import viewall from '../screen/viewall.js';
 import {ModalSigup} from '../Component/ModalSigup.js';
 import ListEmpisodes from '../Component/ListEpisodes.js';
-
-
-
-
+import ListView from '../Component/ListView.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -89,8 +86,9 @@ const StackNavigator = () => {
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="DetailMovie" component={detailMovie} />
       <Stack.Screen name="Sreachscrenn" component={Sreachscrenn} />
-      <Stack.Screen name="Viewall" component={viewall} />
-      <Stack.Screen name="ModalSigup" component={ModalSigup} />
+      <Stack.Screen name="Viewall" component={viewall}/>
+      <Stack.Screen name="ModalSigup" component={ModalSigup}/>
+      <Stack.Screen name="ListView" component={ListView}/>
     </Stack.Navigator>
   );
 }
