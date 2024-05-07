@@ -66,7 +66,13 @@ export default Watchlist = ({navigation}) =>{
                         <Text style={styles.textHeading} >
                             Xem sau
                         </Text>
-                    <View></View>
+                    <View>
+                        <Icon
+                            name='plus'
+                            size={25}
+                            color={'red'}
+                        />
+                    </View>
                 </View>
                 
                 <ListView  navigation={navigation} data={data} toggleModal={toggleModal} />
@@ -93,8 +99,9 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     textHeading:{
-        fontSize:24,
-        color:'white'
+        fontSize:25,
+        color:'white',
+        fontWeight:600
     },
     
     

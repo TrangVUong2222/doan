@@ -113,17 +113,19 @@ export default function SeriMovie({ navigation }) {
         >
             <SafeAreaView style={styles.container}>
                 <View style={styles.headerBox}>
+                <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
                     <View style={styles.boxbackicon}>
-                        <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
+                       
                         <Icon
                         name='chevron-left'
                         size={25}
                         color={'white'}
                         />
-                        </TouchableOpacity>
+                       
                     </View> 
+                    </TouchableOpacity>
                     <Text style={styles.textHeader}>Chi tiết</Text>
-                   <View></View>
+                   <View style={styles.boxbackicon}></View>
                 </View>
                                
                 <View style={styles.boxbody}>
@@ -136,30 +138,64 @@ export default function SeriMovie({ navigation }) {
                     <View style={styles.miniboxinfo}>
                         <View style={styles.boxadd}>
                             <View style={styles.boxname}> 
-                                <Text numberOfLines={2}  style={styles.name}>{shortenText("Mật vụ ong", 25)}</Text>
+                                <Text numberOfLines={2}  style={styles.name}>{shortenText("Mật vụ ong ", 25)}</Text>
                             </View>
                             <View style={styles.addpick}>
                             
                             </View>
                         </View>
                         <View style={styles.boxinfo}>
-                            <ScrollView contentContainerStyle={styles.scrollView} con>
+                            
                                 <View style={styles.rate}>
-                                    <Image
-                                        source={require('../assets/icon/Star.png')}
+                                    <Text style={styles.ratePoint}>10</Text>
+                                    <Icon 
+                                        name='star'
+                                        size={15}
+                                        color={'orange'}
+                                        style={{ marginLeft: 5 }}
                                     />
-                                    <Text style={styles.ratePoint}>10.0</Text>
                                 </View>
-                                <Text style={styles.textbox}>Trạng thái : 1102 tập</Text>
-                                <Text style={styles.textbox}>Sắp chiếu: Tập 1103 Vietsub</Text>
-                                <Text style={styles.textbox}>Đạo diễn : Konosuke Uda, Munehisa Sakai, Mamoru Hosoda</Text>
-                                <Text style={styles.textbox}>Thời lượng: 25 phút / tập</Text>
-                                <Text style={styles.textbox}>Tình trạng: Phim đang chiếu</Text>
-                                <Text style={styles.textbox}>Ngôn ngữ: Phụ đề Việt</Text>
-                                <Text style={styles.textbox}>Năm sản xuất: 1999</Text>
-                                <Text style={styles.textbox}>Quốc gia: Nhật Bản</Text>
-                                <Text style={styles.textbox}>Thể loại: Phiêu Lưu - Hành Động, Hoạt Hình, Hài Hước</Text>
-                            </ScrollView>
+                                <View style={styles.BoxTextInfo}>
+                                    <View style={styles.textRow}>
+                                        <Icon 
+                                            name='thermometer'
+                                            size={15}
+                                            color={'white'}
+                                            style={{ marginLeft: 5 }}
+                                        />
+                                        <Text style={styles.textInfo}>Hoàn thành</Text>
+                                    </View>
+                                    <View style={styles.textRow}>
+                                        <Icon 
+                                            name='layer-group'
+                                            size={15}
+                                            color={'white'}
+                                            style={{ marginLeft: 5 }}
+                                        />
+                                        <Text style={styles.textInfo} numberOfLines={1}>Hành Động, Phiêu Lưu, Hài Hước, Viễn Tưởnga sdas asdadas ádda</Text>
+                                    </View>
+                                    <View style={styles.textRow}>
+                                        <Icon 
+                                            name='calendar-days'
+                                            size={15}
+                                            color={'white'}
+                                            style={{ marginLeft: 5 }}
+                                        />
+                                        <Text style={styles.textInfo}>2020</Text>
+                                    </View>
+                                    {/* <View style={styles.textRow}>
+                                    <Icon 
+                                        name='clock'
+                                        size={15}
+                                        color={'white'}
+                                        style={{ marginLeft: 5 }}
+                                    />
+                                    <Text style={styles.textInfo}>162 phút</Text>
+                                    </View> */}
+                                </View>
+                                
+                                
+                            
                         </View>
                     </View>
                 </View>
@@ -235,7 +271,7 @@ const styles = StyleSheet.create({
         height: 75,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 30,
+        paddingHorizontal: 15,
         alignItems: 'center'
     },
     textHeader: {
@@ -273,9 +309,6 @@ const styles = StyleSheet.create({
     rate: {
         flexDirection: 'row'
     },
-    textbox: {
-        color: "white"
-    },
     boxinfo: {
         height: 120,
         width: 250,
@@ -283,17 +316,15 @@ const styles = StyleSheet.create({
     miniboxinfo: {
         flexDirection: 'column',
     },
-    scrollView: {
-        height:200,
-    },
+   
     smallImg: {
         borderRadius: 5,
         margin: 20
     },
     boxname: {
-        marginTop: 20,
-        
-        height:70
+        marginTop:20,
+        height:'auto',
+        maxHeight:100,
     },
     boxadd: {
         flexDirection: 'row',
@@ -409,8 +440,22 @@ const styles = StyleSheet.create({
         height:3,
         borderRadius:10,
         
+    },
+    textRow:{
+        flexDirection:'row',
+        marginTop:8
+    },
+    textInfo:{
+        color:'white', 
+        marginLeft:5,
+        maxWidth:'90%',  
+    },
+    boxbackicon:{
+        height:60,
+        width:60,
+        justifyContent:'center',
+        alignItems:'center'
     }
-    
 
    
 });

@@ -5,10 +5,9 @@ import {
 
 } from 'react-native';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
-const heightPoster = windowWidth/1.8;
+
+
 const styles = StyleSheet.create({
     container:{
         flex:1, 
@@ -28,22 +27,15 @@ const styles = StyleSheet.create({
         fontWeight:'700',
     },
     posterBox:{
-        width: windowWidth,
-        height:heightPoster,
+        // width: 400,
+        // height: 200,
+        justifyContent:'center',
+        alignItems:'center',
 
     },
     poster:{
-        width:'100%',
-        height:'100%',
         borderBottomLeftRadius:20,
         borderBottomRightRadius:20,
-    },
-    playIcon: {
-        position: 'absolute',
-        width:55,
-        height:55,
-        top:(heightPoster-55)/2,
-        right:(windowWidth-55)/2,
     },
     MiddelBox:{
         marginTop:20,
@@ -56,7 +48,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         paddingHorizontal:20,
         paddingVertical:10,
-        alignItems:'center'
+        alignItems:'center',
         
     },
     BoxNamesub:{
@@ -233,8 +225,20 @@ const styles = StyleSheet.create({
     },
     rate:{
         marginLeft:15
+    },
+    video:{
+        width:400,
+        height:200
+    },
+    playIcon1:{
+        position:'absolute'
+    },
+    boxbackicon:{
+        height:60,
+        width:60,
+        justifyContent:'center',
+        alignItems:'center'
     }
-
 
 
 

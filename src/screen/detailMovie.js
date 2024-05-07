@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {
     View,
@@ -9,15 +9,36 @@ import {
     ImageBackground,
     StyleSheet,
     SafeAreaView,
-    KeyboardAvoidingView    
+    KeyboardAvoidingView,
+
 } from 'react-native'
+import { Video } from 'expo-av';
 import ListEpisodes from "../Component/ListEpisodes";
 import ListComment from "../Component/ListComment";
 import styles from '../styles/stylesDetailMovie';
 import StarRating from  '../Component/StarRating';
+import { ScreenOrientation } from 'expo';
 
 
 const DetailMovie = ({ navigation }) => {
+    const [isPlayClicked, setIsPlayClicked] = useState(false);
+
+    const playVideo1 = () => {
+        // Thực hiện các hành động khi nút được nhấn
+        setIsPlayClicked(true);
+    };
+    const posterUrl = 'https://th.bing.com/th/id/OIP.CYhAyZpflySpEFKNywH1egHaEK?rs=1&pid=ImgDetMain'; 
+    const videoUrl = 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4';
+    const videoRef = useRef(null);
+    const playVideo = async () => {
+        if (videoRef.current) {
+            await videoRef.current.playAsync();
+        }
+    };
+
+    const enterFullScreen = async () => {
+        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+    };
     const [isUpIcon, setIsUpIcon] = useState(true); 
     const [isPickLoveClicked, setIsPickLoveClicked] = useState(false);
     const [isPickAddClicked, setIsPickAddClicked] = useState(false);
@@ -87,36 +108,54 @@ const DetailMovie = ({ navigation }) => {
             <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }} keyboardVerticalOffset={100}>
                 <SafeAreaView style={styles.container}>
                     <View style={styles.headerBox}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
                         <View style={styles.boxbackicon}>
-                            <TouchableOpacity onPress={() => navigation.goBack()}>
                                 <Icon
                                     name='chevron-left'
                                     size={25}
                                     color={'white'}
                                 />
-                            </TouchableOpacity>
                         </View>
+                        </TouchableOpacity>
                         <Text style={styles.textHeader}>
                             Chi tiết
                         </Text>
                         <TouchableOpacity style={styles.picklove} onPress={handlePickLoveClick}>
+                            <View style={styles.boxbackicon}>
                             <Icon
                                 name='heart'
                                 size={30}
                                 color={isPickLoveClicked ? 'red' : 'white'}
                             />
+                            </View>
                         </TouchableOpacity>
                     </View>
                     
                     <View style={styles.posterBox}>
-                        <Image
-                            source={require('../assets/image/poster.png')}
-                            style={styles.poster}
+                        <Video
+                            ref={videoRef}
+                            source={{ uri: videoUrl }}
+                            usePoster={true}
+                            posterSource={{ uri: posterUrl }} 
+                            posterStyle={{
+                            resizeMode: 'cover',
+                            }}
+                            style={styles.video}
+                            useNativeControls={true}
+                            resizeMode="cover"
+                            onFullscreenUpdate={enterFullScreen}
+                            isMuted={false} 
                         />
-                        <Image
-                            style={styles.playIcon}
-                            source={require('../assets/icon/playicon.png')}
-                        />
+                        {!isPlayClicked && (
+                    <TouchableOpacity onPress={() => {playVideo1(); playVideo();}} style={styles.playIcon1}>
+                    <Icon
+                        name='circle-play'
+                        size={60}
+                        color='white'
+                        style={styles.playIcon}
+                    />
+                </TouchableOpacity>
+            )}
                     </View>
                     {!clickComment && (
                         <View style={styles.MiddelBox}>

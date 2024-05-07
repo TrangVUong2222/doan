@@ -22,7 +22,7 @@ const ListView = ({ navigation, data, toggleModal }) => {
     };
     
     return (
-        <View>
+        <View style={styles.container}>
             <FlatList
                 data={data}
                 showsVerticalScrollIndicator={false} 
@@ -116,6 +116,7 @@ const ListView = ({ navigation, data, toggleModal }) => {
 
 const styles = StyleSheet.create({
     container:{
+        marginTop:30,
         flex:1,
         flexDirection: 'column',
       
@@ -170,9 +171,9 @@ const styles = StyleSheet.create({
         maxHeight:100,
         
     },
-    numberOfLine:{
-        numberOfLines:1,
-    },
+    // numberOfLine:{
+    //     numberOfLines:1,
+    // },
     textTap:{
         color:'white'
     },

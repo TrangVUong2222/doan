@@ -168,7 +168,7 @@ export default function Home({navigation}) {
                         </Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Viewall')}>
                         <Text style={[styles.texttitle,styles.texttitle1]}>
-                            Xem tất cả
+                            Xem thêm
                         </Text>
                         </TouchableOpacity>
                     </View>
@@ -196,7 +196,7 @@ export default function Home({navigation}) {
                         </Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Viewall')}>
                         <Text style={[styles.texttitle,styles.texttitle1]}>
-                            Xem tất cả
+                        Xem thêm
                         </Text>
                         </TouchableOpacity>
                     </View>
@@ -224,7 +224,7 @@ export default function Home({navigation}) {
                         </Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Viewall')}>
                         <Text style={[styles.texttitle,styles.texttitle1]}>
-                            Xem tất cả
+                        Xem thêm
                         </Text>
                         </TouchableOpacity>
                     </View>
