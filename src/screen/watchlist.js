@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     textHeading:{
         fontSize:25,
         color:'white',
-        fontWeight:600
+        fontWeight:"600"
     },
     
     
