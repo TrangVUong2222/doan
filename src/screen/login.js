@@ -1,6 +1,7 @@
 import React, {Component, useState} from "react";
 import axios from "axios";
-import {checkUserName, checkPassWord, checkSigIn} from "../Validation/LoginValidation"
+import {checkUserName, checkPassWord, checkSigIn} from "../Validation/LoginValidation";
+
 import {
     View,
     Text,
@@ -12,7 +13,6 @@ import {
     StatusBar,
     SafeAreaView,
 } from 'react-native'
- 
 
 
 
@@ -21,33 +21,55 @@ export default Login = ({navigation}) =>{
     const [password, setpassword] = useState(null)
     const [ErrorMessUs, setErrorMessUs] = useState(null)
     const [ErrorMessPW, setErrorMessPW] = useState(null)
-    const [checkUs, setCheckUs] =useState(false)
-    const [checkPW, setCheckPW] = useState(false)
 
     const handBulerUserName=(username)=>{
         var checkuserName = checkUserName(username)
         if (checkuserName != true){
             setErrorMessUs(checkuserName)
-            setCheckUs(false)
         }
-        else{setCheckUs(true)
+        else{
             setErrorMessUs(null)
-            
-        }
+            }
     }
    
     const handBulerPassWord=(password)=>{
         var checkpassWord = checkPassWord(password)
         if (checkpassWord != true){
             setErrorMessPW(checkpassWord)
-            setCheckPW(false)
         }
-
-        else{setCheckPW(true)
+        else{
             setErrorMessPW(null)
-        
+     
         }
     }
+
+    const handleLogin = () => {
+        const data = {
+            UserName: "john_doe",
+            Password: "Pas@1234",
+        };
+    
+        axios.post("https://4f34-118-71-137-232.ngrok-free.app/api/Account/SignIn", data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        .then(res => {
+           return res.data
+        })
+        .then((rs)=>{
+            console.log(rs)
+
+        })
+        .catch(error => {
+            console.error("Error during login:", error);
+            // alert(console.log(error)); // Hiển thị lỗi nếu có lỗi xảy ra
+        });
+    };
+    
+
+
     
     return(
         <ImageBackground
@@ -66,7 +88,7 @@ export default Login = ({navigation}) =>{
                 </View>
                 <View style={styles.inputInfor}>
                 <View>{
-                    !checkUs && (<View >
+                    ErrorMessUs && (<View >
                         <Text style={styles.textvalidation}>{ErrorMessUs}</Text>
 
                 </View>)
@@ -89,13 +111,12 @@ export default Login = ({navigation}) =>{
                     </View>
                     <View >
                         {
-                            !checkPW && (
+                            ErrorMessPW && (
                             <View>
                                 <Text style={styles.textvalidation}>{ErrorMessPW}</Text>
 
                             </View>
                             )
-
                         }
                         </View>
                     <View style = {styles.infor}>
@@ -116,7 +137,7 @@ export default Login = ({navigation}) =>{
                     
                 </View>
                 <View style={styles.boxLogin}>
-                    <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}  disabled={checkUs && checkPW ? false:true} style={[styles.buttomLogin]} >
+                    <TouchableOpacity onPress={() => handleLogin()} disabled={checkSigIn(username,password) ? false:true}  style={[styles.buttomLogin]} >
                         <Text style ={styles.textButtom}>
                            Đăng Nhập
                         </Text>  

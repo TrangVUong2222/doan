@@ -56,9 +56,9 @@ const checkPassWord=(value)=>{
 
 
 const checkSigIn = (username, password)=>{
-    let checkPassWord = checkPassWord(password)
-    let checkUserName = checkUserName(username)
-    if (checkPassWord== true && checkUserName==true){
+    let checkpassWord = checkPassWord(password)
+    let checkuserName = checkUserName(username)
+    if (checkpassWord== true && checkuserName==true){
         return true
     }
     return false
@@ -100,11 +100,11 @@ const checkEmail =  (value) =>{
 }
 }
 const checkSignUp = (username,password,confirmpw, email) =>{
-    let checkPassWord = checkPassWord(password)
-    let checkUserName = checkUserName(username)
-    let chekcEmail = checkEmail(email)
-    let checkConfirmpw = checkConfirmpw(confirmpw)
-    if (checkConfirmpw ==true && checkUserName ==true &&chekcEmail ==true &&checkPassWord ==true){
+    let checkpassWord = checkPassWord(password)
+    let checkuserName = checkUserName(username)
+    let checkemail = checkEmail(email)
+    let checkconfirmpw = checkConfirmpw(confirmpw)
+    if (checkpassWord ==true &&  checkuserName ==true &&checkemail ==true &&checkconfirmpw ==true){
         return true
     }
     return false
