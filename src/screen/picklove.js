@@ -1,4 +1,4 @@
-import React, {Component ,useState} from "react";
+import React, {Component ,useEffect,useState} from "react";
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {
     View,
@@ -21,6 +21,8 @@ export default picklove = ({navigation}) =>{
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
+
+    
     const data = [
         {
             id: 1,

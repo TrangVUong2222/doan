@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import axios from "axios";
 import {
     View,
     Text,
@@ -10,8 +11,10 @@ import {
     StyleSheet,
     SafeAreaView,
     KeyboardAvoidingView,
+    Modal,
 
 } from 'react-native'
+import {LogInCmt, toggleModal} from '../Component/LogInCmt'
 import { Video } from 'expo-av';
 import ListEpisodes from "../Component/ListEpisodes";
 import ListComment from "../Component/ListComment";
@@ -22,9 +25,30 @@ import { ScreenOrientation } from 'expo';
 
 const DetailMovie = ({ navigation }) => {
     const [isPlayClicked, setIsPlayClicked] = useState(false);
+    const tgModal = () => {
+        setcheckLoginCmt(false); 
+        navigation.navigate('Login')
+    }
+    const ClickX =()=>{
+        setcheckLoginCmt(false)
+    }
+
+    const infoUser =false;
+
+    const [checkLoginCmt,setcheckLoginCmt] = useState(false);
+
+
+    const KiemtraLogin= (infoUser) => {
+        if (infoUser == false){
+            setcheckLoginCmt(true);
+        }else{
+            console.log('khong co j')
+            
+        }
+    };
 
     const playVideo1 = () => {
-        // Thực hiện các hành động khi nút được nhấn
+      
         setIsPlayClicked(true);
     };
     const posterUrl = 'https://th.bing.com/th/id/OIP.CYhAyZpflySpEFKNywH1egHaEK?rs=1&pid=ImgDetMain'; 
@@ -64,6 +88,47 @@ const DetailMovie = ({ navigation }) => {
         if (text.length <= maxLength) return text;
         return text.substr(0, maxLength) + '...';
     };
+
+
+                
+               
+                
+                // axios.get('https://de53-118-71-137-232.ngrok-free.app/api/DetailMovie/InForMovie', {
+                // params: queryParams
+                // })
+                // .then(response => {
+                //     return response.data
+                // })
+                // .then(res =>{
+                //     console.log(res.data);
+                // })
+                // .catch(error => {
+                // // Xử lý lỗi ở đây
+                // console.error(error);
+                // });
+
+    useEffect (() => {
+        const queryParams = {
+            Id: 'ad789fcf-95c1-4c63-a391-00dae7a30347',
+            
+            };
+
+        axios.get('https://de53-118-71-137-232.ngrok-free.app/api/DetailMovie/InForMovie', {
+            params: queryParams
+            })
+            .then(response => {
+                return response.data
+            })
+            .then(res =>{
+                console.log(res);
+            })
+            .catch(error => {
+            // Xử lý lỗi ở đây
+            console.log(error.messenge);
+            });
+
+    })
+
 
     const data1 = [
         { id: 1, name: 'Episode 1' },
@@ -260,12 +325,16 @@ const DetailMovie = ({ navigation }) => {
                                         style={styles.CommentText}
                                     />
                                     <View>
+                                        <TouchableOpacity onPress={() => KiemtraLogin(infoUser)}>
                                         <Icon
                                             style={styles.PlaneIcon}
                                             name="paper-plane"
                                             color="#ffff"
                                             size={25}
                                         />
+                                        <LogInCmt isVisible={checkLoginCmt} tgModal={tgModal }  ClickX = {ClickX}
+                                        />
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>

@@ -12,7 +12,7 @@ import {  View,
 } from 'react-native';
 
 
-const ModalSigup = ({navigation, toggleModalAndNavigate}) =>{
+const ModalSigup = ({ toggleModalAndNavigate}) =>{
     return (
         <TouchableOpacity
             style = {style.container}

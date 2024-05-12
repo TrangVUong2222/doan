@@ -13,15 +13,19 @@ import {
     StatusBar,
     SafeAreaView,
 } from 'react-native'
-
-
+import {toggleModal, ModalSignIn }  from '../Component/ModalSignIn'
 
 export default Login = ({navigation}) =>{
     const [username, setusername]  = useState(null)
     const [password, setpassword] = useState(null)
     const [ErrorMessUs, setErrorMessUs] = useState(null)
     const [ErrorMessPW, setErrorMessPW] = useState(null)
-
+    const [checkLogin, setCheckLogin] = useState(false);
+  
+    const tgModal = () => {
+        setCheckLogin(false);
+    } 
+        
     const handBulerUserName=(username)=>{
         var checkuserName = checkUserName(username)
         if (checkuserName != true){
@@ -45,11 +49,11 @@ export default Login = ({navigation}) =>{
 
     const handleLogin = () => {
         const data = {
-            UserName: "john_doe",
-            Password: "Pas@1234",
+            UserName: "jhn_doe",
+            Password: "Pass@1234",
         };
     
-        axios.post("https://4f34-118-71-137-232.ngrok-free.app/api/Account/SignIn", data, {
+        axios.post("https://de53-118-71-137-232.ngrok-free.app/api/Account/SignIn", data, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -63,8 +67,9 @@ export default Login = ({navigation}) =>{
 
         })
         .catch(error => {
-            console.error("Error during login:", error);
-            // alert(console.log(error)); // Hiển thị lỗi nếu có lỗi xảy ra
+            console.log("Error during login:", error);
+            setCheckLogin(true);
+       
         });
     };
     
@@ -142,6 +147,7 @@ export default Login = ({navigation}) =>{
                            Đăng Nhập
                         </Text>  
                     </TouchableOpacity>
+                <ModalSignIn toggleModal={toggleModal} isVisible={checkLogin} tgModal={tgModal} />
 
                     <View style = {styles.textBox} >
                         <Text style ={styles.questionText}>

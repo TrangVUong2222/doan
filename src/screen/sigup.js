@@ -207,7 +207,7 @@ export default Sigup = ({navigation}) =>{
                         visible ={isModalVisible}
                         onRequestClose={() => changeModalVisible(false)}
                     >
-                        <ModalSigup navigation={navigation} toggleModalAndNavigate={toggleModalAndNavigate} />
+                        <ModalSigup toggleModalAndNavigate={toggleModalAndNavigate} />
                     </Modal>
 
                     <View style = {styles.textBox} >
