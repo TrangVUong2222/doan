@@ -125,8 +125,24 @@ export default function Viewall ({navigation}) {
                                 style={styles.image2}
                                 source={item.img}
                             />
+                            <View style={styles.boxName}>
+                                <Text style={styles.textMovie} numberOfLines={2} ellipsizeMode="tail">
+                                    Mật vụ ong 
+                                </Text>
+                            </View>
+                            <View style={styles.rate}>
+                                <Text style={styles.ratePoint}>10</Text>
+                                    <Icon 
+                                        name='star'
+                                        size={15}
+                                        color={'orange'}
+                                        style={{ marginLeft: 5 }}
+                                    />
+                            </View>
+                            
                             </TouchableOpacity>
                             )}
+                            
                     />
                     </View>
                 </View>
@@ -167,4 +183,18 @@ const styles = StyleSheet.create({
     image2: {
        margin:10
     },  
+    boxName:{
+        marginTop:10,
+        width:160,
+        height:40,
+    },
+    rate:{
+        position:'absolute',
+        flexDirection:'row',
+        left:15,
+        top:15
+    },
+    ratePoint:{
+        color:'orange'
+    }
 })

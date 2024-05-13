@@ -17,7 +17,7 @@ import {
 
 import styles from "../styles/stylesHome";
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
     const [imgList, setImgList] = useState([]);
     const [imgContentList, setImgContenList] = useState([]);
 
@@ -44,7 +44,7 @@ export default function Home({navigation}) {
 
     useEffect(() => {
         const dataContent = [
-            { 
+            {
                 image: require('../assets/image/51.png')
             },
             {
@@ -104,30 +104,30 @@ export default function Home({navigation}) {
                         />
                     </View>
                     <View style={styles.boxsreach}>
-                        <TouchableOpacity style={styles.clicksreach} onPress={()=>{navigation.navigate('Sreachscrenn')}}>
-                        <View style={styles.searchContainer}>
-                            <Text style={styles.searchInput}>
-                                Tìm kiếm phim
-                            </Text>
-                            
-                            <Icon 
-                            name='magnifying-glass'
-                            size={20}
-                            color={'white'}
-                            
-                        />
-                        </View>
+                        <TouchableOpacity style={styles.clicksreach} onPress={() => { navigation.navigate('Sreachscrenn') }}>
+                            <View style={styles.searchContainer}>
+                                <Text style={styles.searchInput}>
+                                    Tìm kiếm phim
+                                </Text>
+
+                                <Icon
+                                    name='magnifying-glass'
+                                    size={20}
+                                    color={'white'}
+
+                                />
+                            </View>
                         </TouchableOpacity>
                     </View>
-                    
+
 
                     <View style={styles.user}>
                         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                        <Icon 
-                            name='circle-user'
-                            size={35}
-                            color={'white'}
-                        />
+                            <Icon
+                                name='circle-user'
+                                size={35}
+                                color={'white'}
+                            />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -135,24 +135,35 @@ export default function Home({navigation}) {
                     <View style={styles.boxSlide}>
                         <FlatList
                             horizontal={true}
-                            numColumns={1} 
+                            numColumns={1}
                             keyExtractor={(item, index) => index.toString()}
                             data={imgList}
                             renderItem={({ item }) => (
                                 <View style={styles.imageContainer}>
-                                    <TouchableOpacity onPress={()=>{
-                                    navigation.navigate('Serimovie')}}>
+                                    <TouchableOpacity onPress={() => {
+                                        navigation.navigate('Serimovie')
+                                    }}>
                                         <Image
-                                            style={[styles.image1, {marginRight: 15}]} 
+                                            style={[styles.image1, { marginRight: 15 }]}
                                             source={item.img}
                                             pagingEnabled={true}
                                         />
+                                        <View style={styles.rate}>
+                                            <Text style={styles.ratePoint}>10</Text>
+                                            <Icon
+                                                name='star'
+                                                size={25}
+                                                color={'orange'}
+                                                style={{ marginLeft: 5 }}
+                                            />
+                                        </View>
                                     </TouchableOpacity>
                                     <View style={styles.buttonContainer}>
                                         <TouchableOpacity
                                             style={styles.boxclick}
-                                            onPress={()=>{
-                                                navigation.navigate('Serimovie')}}
+                                            onPress={() => {
+                                                navigation.navigate('Serimovie')
+                                            }}
                                         >
                                             <Text style={styles.textboxclick}>Xem ngay</Text>
                                         </TouchableOpacity>
@@ -167,72 +178,92 @@ export default function Home({navigation}) {
                             Phim mới
                         </Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Viewall')}>
-                        <Text style={[styles.texttitle,styles.texttitle1]}>
-                            Xem thêm
-                        </Text>
+                            <Text style={[styles.texttitle, styles.texttitle1]}>
+                                Xem thêm
+                            </Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.scroll}>
                         <FlatList
                             horizontal={true}
                             numColumns={1}
-                            keyExtractor={(item, index) => index.toString()} 
+                            keyExtractor={(item, index) => index.toString()}
                             data={imgList}
                             renderItem={({ item }) => (
-                                <TouchableOpacity onPress={()=>{
-                                    navigation.navigate('Serimovie')}}>
+                                <TouchableOpacity onPress={() => {
+                                    navigation.navigate('Serimovie')
+                                }}>
                                     <Image
                                         style={styles.image2}
                                         source={item.img}
                                     />
+                                    <View style={[styles.rate, styles.rateBox]}>
+                                        <Text style={[styles.ratePoint, styles.ratePointBox]}>10</Text>
+                                        <Icon
+                                            name='star'
+                                            size={15}
+                                            color={'orange'}
+                                            style={{ marginLeft: 5 }}
+                                        />
+                                    </View>
                                 </TouchableOpacity>
                             )}
                         />
                     </View>
-                    
+
                     <View style={styles.title}>
                         <Text style={styles.texttitle}>
                             Phim nhiều tập
                         </Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Viewall')}>
-                        <Text style={[styles.texttitle,styles.texttitle1]}>
-                        Xem thêm
-                        </Text>
+                            <Text style={[styles.texttitle, styles.texttitle1]}>
+                                Xem thêm
+                            </Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.scroll}>
                         <FlatList
                             horizontal={true}
                             numColumns={1}
-                            keyExtractor={(item, index) => index.toString()} 
+                            keyExtractor={(item, index) => index.toString()}
                             data={imgList}
                             renderItem={({ item }) => (
-                                <TouchableOpacity  onPress={()=>{
-                                    navigation.navigate('Serimovie')}}>
+                                <TouchableOpacity onPress={() => {
+                                    navigation.navigate('Serimovie')
+                                }}>
                                     <Image
                                         style={styles.image2}
                                         source={item.img}
                                     />
+                                    <View style={[styles.rate, styles.rateBox]}>
+                                        <Text style={[styles.ratePoint, styles.ratePointBox]}>10</Text>
+                                        <Icon
+                                            name='star'
+                                            size={15}
+                                            color={'orange'}
+                                            style={{ marginLeft: 5 }}
+                                        />
+                                    </View>
                                 </TouchableOpacity>
                             )}
                         />
                     </View>
-                    
+
                     <View style={styles.title}>
                         <Text style={styles.texttitle}>
                             Phim lẻ
                         </Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Viewall')}>
-                        <Text style={[styles.texttitle,styles.texttitle1]}>
-                        Xem thêm
-                        </Text>
+                            <Text style={[styles.texttitle, styles.texttitle1]}>
+                                Xem thêm
+                            </Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.scroll}>
                         <FlatList
                             horizontal={true}
                             numColumns={1}
-                            keyExtractor={(item, index) => index.toString()} 
+                            keyExtractor={(item, index) => index.toString()}
                             data={imgList}
                             renderItem={({ item }) => (
                                 <TouchableOpacity onPress={() => { /* Xử lý khi ảnh được nhấn */ }}>
@@ -240,6 +271,15 @@ export default function Home({navigation}) {
                                         style={styles.image2}
                                         source={item.img}
                                     />
+                                    <View style={[styles.rate, styles.rateBox]}>
+                                        <Text style={[styles.ratePoint, styles.ratePointBox]}>10</Text>
+                                        <Icon
+                                            name='star'
+                                            size={15}
+                                            color={'orange'}
+                                            style={{ marginLeft: 5 }}
+                                        />
+                                    </View>
                                 </TouchableOpacity>
                             )}
                         />

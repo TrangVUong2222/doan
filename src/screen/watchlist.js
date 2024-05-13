@@ -1,4 +1,4 @@
-import React, {Component ,useState} from "react";
+import React, {Component ,useEffect,useState} from "react";
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {
     View,
@@ -11,16 +11,28 @@ import {
     StatusBar,
     SafeAreaView,
     ScrollView,
-} from 'react-native'
+} from 'react-native';
 import ListView from "../Component/ListView";
 import { ModalDelete } from "../Component/ModalDelete";
+import { LogInCmt } from "../Component/LogInCmt";
+import {KiemtraLogin} from '../Component/LogInCmt'
+
 
 export default Watchlist = ({navigation}) =>{
     const [isModalVisible, setModalVisible] = useState(false);
+    const [checkLoginCmt,setcheckLoginCmt] = useState(false);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
+    const tgModal = () => {
+        setcheckLoginCmt(false); 
+        navigation.navigate('Login')
+    }
+    const ClickX =()=>{
+        setcheckLoginCmt(false);
+    }
+    const infoUser =false;
     const data = [
         {
             id: 1,
@@ -42,8 +54,20 @@ export default Watchlist = ({navigation}) =>{
             time: '119 phút',
             tap: 'Tập 2'
         },
-        // Thêm các mục khác nếu cần
     ];
+
+    useEffect(() =>{
+        const KiemtraLogin= (infoUser) => {
+            if (infoUser == false){
+                setcheckLoginCmt(true);
+            }else{
+                console.log('khong co j')
+                
+            }
+        };
+        KiemtraLogin(infoUser)
+
+    },[]);
     return(
         <ImageBackground
             source={require('../assets/image/backgroundimg1.png')}
@@ -77,6 +101,7 @@ export default Watchlist = ({navigation}) =>{
                 
                 <ListView  navigation={navigation} data={data} toggleModal={toggleModal} />
                 <ModalDelete isVisible={isModalVisible} toggleModal={toggleModal} />
+                <LogInCmt isVisible={checkLoginCmt} tgModal={tgModal }  ClickX = {ClickX}/>
 
 
         

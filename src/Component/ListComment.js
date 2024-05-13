@@ -1,6 +1,7 @@
 import React from "react";
 import Icon from 'react-native-vector-icons/FontAwesome6';
-import { View,
+import {
+    View,
     Text,
     TextInput,
     TouchableOpacity,
@@ -12,7 +13,8 @@ import { View,
     ScrollView,
     FlatList,
     Dimensions,
-    KeyboardAvoidingView } from 'react-native';
+    KeyboardAvoidingView
+} from 'react-native';
 
 import styles from '../styles/stylesDetailMovie';
 const ListComment = ({ data }) => {
@@ -28,42 +30,42 @@ const ListComment = ({ data }) => {
                 showsHorizontalScrollIndicator={false} // Ẩn thanh lướt ngang
                 renderItem={({ item, index }) => (
                     <View style={styles.CommentItem}>
-                            <View style = {styles.ItemInfor}>
-                                <View style = {styles.ItemLeft}>
-                                    <Icon 
+                        <View style={styles.ItemInfor}>
+                            <View style={styles.ItemLeft}>
+                                <Icon
                                     name='circle-user'
                                     size={35}
                                     color={'white'}
-                                    
+
+                                />
+
+                            </View>
+                            <View style={styles.ItemRight}>
+                                <View style={styles.ItemRightSub}>
+                                    <Text style={styles.UserNameListCmt}>{` ${item.UserName}`}</Text>
+                                </View>
+                                <View style={styles.ItemRightSub}>
+                                    <Text style={styles.UserRated}>{` ${item.UserRate}`}</Text>
+                                    <Icon
+                                        name='star'
+                                        size={15}
+                                        color={'orange'}
+
                                     />
 
                                 </View>
-                                <View style ={styles.ItemRight}>
-                                    <View style ={styles.ItemRightSub}>
-                                        <Text style ={styles.UserNameListCmt}>{` ${item.UserName}`}</Text>
-                                    </View>
-                                    <View style ={styles.ItemRightSub}>
-                                        <Text style={styles.UserRated}>{` ${item.UserRate}`}</Text>
-                                        <Icon 
-                                            name='star'
-                                            size={15}
-                                            color={'orange'}
-                                    
-                                        />
 
-                                    </View>
-                            
-
-                                </View>
 
                             </View>
-                            <View style= {styles.ItemCommentContent}>
-                                <Text style={styles.textComment}>{shortenText(`${item.UserComment}`, 200)}</Text>
 
-                            </View>
-                        </View> 
+                        </View>
+                        <View style={styles.ItemCommentContent}>
+                            <Text style={styles.textComment}>{shortenText(`${item.UserComment}`, 200)}</Text>
+
+                        </View>
+                    </View>
                 )}
-                keyExtractor={item => item.id.toString()} 
+                keyExtractor={item => item.id.toString()}
             />
         </View>
     );

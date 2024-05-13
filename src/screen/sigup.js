@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, { Component, useState } from "react";
 import {
     View,
     Text,
@@ -11,11 +11,11 @@ import {
     SafeAreaView,
     Modal
 } from 'react-native'
-import {checkUserName, checkPassWord, checkConfirmpw, checkEmail} from "../Validation/LoginValidation";
-import {ModalSigup} from '../Component/ModalSigup';
-export default Sigup = ({navigation}) =>{
+import { checkUserName, checkPassWord, checkConfirmpw, checkEmail } from "../Validation/LoginValidation";
+import { ModalSigup } from '../Component/ModalSigup';
+export default Sigup = ({ navigation }) => {
 
-    const [username, setusername]  = useState(null)
+    const [username, setusername] = useState(null)
     const [password, setpassword] = useState(null)
     const [confirmpw, setComfirmpw] = useState(null)
     const [email, setEmail] = useState(null)
@@ -23,96 +23,99 @@ export default Sigup = ({navigation}) =>{
     const [ErrorMessEmail, setErrorMessEmail] = useState(null)
     const [ErrorMessCFpw, setErrorMessCFpw] = useState(null)
     const [ErrorMessPW, setErrorMessPW] = useState(null)
-    const [checkUs, setCheckUs] =useState(false)
+    const [checkUs, setCheckUs] = useState(false)
     const [checkPW, setCheckPW] = useState(false)
-    const [checkCfpw,setCheckCFpw] = useState(false)
-    const [checkemail, setCheckEmail] =useState(false)
-    const [isModalVisible, setIsMoDalVisible] =useState(false)
-    
+    const [checkCfpw, setCheckCFpw] = useState(false)
+    const [checkemail, setCheckEmail] = useState(false)
+    const [isModalVisible, setIsMoDalVisible] = useState(false)
+
     const changeModalVisible = (bool) => {
         setIsMoDalVisible(bool)
     }
     const toggleModalAndNavigate = () => {
-        setIsMoDalVisible(false); 
-        navigation.navigate('HomeStack'); 
+        setIsMoDalVisible(false);
+        navigation.navigate('HomeStack');
     }
 
-    const handBulerUserName=(username)=>{
+    const handBulerUserName = (username) => {
         var checkuserName = checkUserName(username)
-        if (checkuserName != true){
+        if (checkuserName != true) {
             setErrorMessUs(checkuserName)
             setCheckUs(false)
         }
-        else{setCheckUs(true)
+        else {
+            setCheckUs(true)
             setErrorMessUs(null)
-            
+
         }
     }
-    const handBulerEmail=(email)=>{
+    const handBulerEmail = (email) => {
         var checkemail = checkEmail(email)
-        if (checkemail != true){
-            setErrorMessEmail(checkEmail)
+        if (checkemail != true) {
+            setErrorMessEmail(checkemail)
             setCheckEmail(false)
         }
-        else{
+        else {
             setCheckEmail(true)
             setErrorMessEmail(null)
-            
+
         }
     }
-   
-    const handBulerPassWord=(password)=>{
+
+    const handBulerPassWord = (password) => {
         var checkpassWord = checkPassWord(password)
-        if (checkpassWord != true){
+        if (checkpassWord != true) {
             setErrorMessPW(checkpassWord)
             setCheckPW(false)
         }
 
-        else{setCheckPW(true)
+        else {
+            setCheckPW(true)
             setErrorMessPW(null)
-        
+
         }
     }
-    const handBulerCFPassWord=(confirmpw, password)=>{
+    const handBulerCFPassWord = (confirmpw, password) => {
         var checkCfpw = checkConfirmpw(confirmpw, password)
-        if (checkCfpw != true){
+        if (checkCfpw != true) {
             setErrorMessCFpw(checkCfpw)
             setCheckCFpw(false)
         }
 
-        else{setCheckCFpw(true)
+        else {
+            setCheckCFpw(true)
             setErrorMessCFpw(null)
-        
+
         }
     }
 
-    return(
+    return (
         <ImageBackground
             source={require('../assets/image/backgroundimg1.png')}
-            style= {{width:'100%', height:'100%'}}    
+            style={{ width: '100%', height: '100%' }}
         >
-            <StatusBar barStyle={"light-content"}/>
-            <SafeAreaView style= {styles.container}>
-                
-                <View style= {styles.boxLogo}>
+            <StatusBar barStyle={"light-content"} />
+            <SafeAreaView style={styles.container}>
+
+                <View style={styles.boxLogo}>
                     <Image
                         style={styles.logo}
                         source={require('../assets/icon/logo1.png')}
                     />
-                    
+
                 </View>
                 <View style={styles.inputInfor}>
                     <View>{
-                    !checkUs && (<View >
-                        <Text style={styles.textvalidation}>{ErrorMessUs}</Text>
+                        !checkUs && (<View >
+                            <Text style={styles.textvalidation}>{ErrorMessUs}</Text>
 
-                    </View>)
-                            }
+                        </View>)
+                    }
 
                     </View>
-                    <View style = {styles.infor}>
+                    <View style={styles.infor}>
                         <Image
-                            style ={[styles.icon]}
+                            style={[styles.icon]}
                             source={require('../assets/icon/usnameicon.png')}
                         />
                         <TextInput
@@ -122,19 +125,19 @@ export default Sigup = ({navigation}) =>{
                             onChangeText={text => setusername(text)}
                             onBlur={() => handBulerUserName(username)}
 
-                        />                       
+                        />
                     </View>
                     <View>{
-                    !checkemail && (<View >
-                        <Text style={styles.textvalidation}>{ErrorMessEmail}</Text>
+                        !checkemail && (<View >
+                            <Text style={styles.textvalidation}>{ErrorMessEmail}</Text>
 
-                    </View>)
-                            }
+                        </View>)
+                    }
 
                     </View>
-                    <View style = {styles.infor}>
+                    <View style={styles.infor}>
                         <Image
-                            style ={[styles.icon,styles.emailicon]}
+                            style={[styles.icon, styles.emailicon]}
                             source={require('../assets/icon/Vector.png')}
                         />
                         <TextInput
@@ -144,42 +147,42 @@ export default Sigup = ({navigation}) =>{
                             onChangeText={text => setEmail(text)}
                             onBlur={() => handBulerEmail(email)}
 
-                        />                       
+                        />
                     </View>
                     <View>{
-                    !checkPW && (<View >
-                        <Text style={styles.textvalidation}>{ErrorMessPW}</Text>
+                        !checkPW && (<View >
+                            <Text style={styles.textvalidation}>{ErrorMessPW}</Text>
 
-                    </View>)
-                            }
+                        </View>)
+                    }
 
                     </View>
-                    <View style = {styles.infor}>
+                    <View style={styles.infor}>
                         <Image
-                            style ={[styles.icon,styles.passwordicon]}
+                            style={[styles.icon, styles.passwordicon]}
                             source={require('../assets/icon/pwicon.png')}
                         />
                         <TextInput
                             style={[styles.textInput]}
                             placeholder="Mật khẩu"
-                            placeholderTextColor="rgba(255, 255, 255, 0.8)" 
+                            placeholderTextColor="rgba(255, 255, 255, 0.8)"
                             onChangeText={text => setpassword(text)}
                             onBlur={() => handBulerPassWord(password)}
                             secureTextEntry={true}
 
-                        />                       
+                        />
                     </View>
                     <View>{
-                    !checkCfpw && (<View >
-                        <Text style={styles.textvalidation}>{ErrorMessCFpw}</Text>
+                        !checkCfpw && (<View >
+                            <Text style={styles.textvalidation}>{ErrorMessCFpw}</Text>
 
-                    </View>)
-                            }
+                        </View>)
+                    }
 
                     </View>
-                    <View style = {styles.infor}>
+                    <View style={styles.infor}>
                         <Image
-                            style ={[styles.icon,styles.passwordicon]}
+                            style={[styles.icon, styles.passwordicon]}
                             source={require('../assets/icon/pwicon.png')}
                         />
                         <TextInput
@@ -190,35 +193,35 @@ export default Sigup = ({navigation}) =>{
                             onBlur={() => handBulerCFPassWord(confirmpw, password)}
                             secureTextEntry={true}
 
-                        />                       
+                        />
                     </View>
-                    
+
                 </View>
                 <View style={styles.boxLogin}>
-                    <TouchableOpacity disabled={checkUs && checkemail && checkCfpw && checkPW ? false:true} 
-                    onPress={() => changeModalVisible(true)} style={[styles.buttomLogin]} >
-                        <Text style ={styles.textButtom}>
-                           Đăng ký
-                        </Text>  
+                    <TouchableOpacity disabled={checkUs && checkemail && checkCfpw && checkPW ? false : true}
+                        onPress={() => changeModalVisible(true)} style={[styles.buttomLogin]} >
+                        <Text style={styles.textButtom}>
+                            Đăng ký
+                        </Text>
                     </TouchableOpacity>
                     <Modal
-                        transparent = {true}
-                        animationType = 'fade'
-                        visible ={isModalVisible}
+                        transparent={true}
+                        animationType='fade'
+                        visible={isModalVisible}
                         onRequestClose={() => changeModalVisible(false)}
                     >
                         <ModalSigup toggleModalAndNavigate={toggleModalAndNavigate} />
                     </Modal>
 
-                    <View style = {styles.textBox} >
-                        <Text style ={styles.questionText}>
+                    <View style={styles.textBox} >
+                        <Text style={styles.questionText}>
                             Đã có tài khoản?
                         </Text>
                         <TouchableOpacity>
                             <Text style={styles.singupText}
-                            onPress={()=>{
-                                navigation.navigate('Login');
-                              }}> Đăng nhập</Text>
+                                onPress={() => {
+                                    navigation.navigate('Login');
+                                }}> Đăng nhập</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -233,115 +236,115 @@ export default Sigup = ({navigation}) =>{
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
         flexDirection: 'column',
-        alignItems:'center'
+        alignItems: 'center'
     },
-    boxImg:{
-        width:'100%',
-        height:'auto',
-        
+    boxImg: {
+        width: '100%',
+        height: 'auto',
+
     },
-    boxLogo:{
+    boxLogo: {
         marginTop: 20,
-        flexDirection:'column' ,
-        justifyContent:'center',
-        alignItems:'center',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    logoText:{
-        marginTop:10,
-        marginBottom:20,
-        fontSize:24,
-        fontWeight:'700',
+    logoText: {
+        marginTop: 10,
+        marginBottom: 20,
+        fontSize: 24,
+        fontWeight: '700',
     },
 
-    loginimg :{ 
-        width:'100%',
-        height:300,
-        resizeMode:'stretch',
-        borderBottomLeftRadius:60,
-        borderBottomRightRadius:60,
-        
-    },
-    inputInfor:{
-        width:'70%',
-        paddingHorizontal:20,
-        paddingVertical:12,
-        
-    },
-    infor:{
-        flexDirection:'row',
-        marginVertical:12,
-        
-    
-    },
-    icon:{
-        position:'absolute',
-        top:18,
-        marginLeft:10,
-        resizeMode:'stretch'
+    loginimg: {
+        width: '100%',
+        height: 300,
+        resizeMode: 'stretch',
+        borderBottomLeftRadius: 60,
+        borderBottomRightRadius: 60,
 
     },
-    passwordicon:{
-        marginTop:-4,
+    inputInfor: {
+        width: '70%',
+        paddingHorizontal: 20,
+        paddingVertical: 12,
 
     },
-    
-    textInput:{
-        width:'100%',
-        height:50,
-        paddingHorizontal:50,
-        borderWidth:1,
-        borderColor:'#ffff',
-        borderRadius:10,
-        color:'#ffff'
+    infor: {
+        flexDirection: 'row',
+        marginVertical: 12,
+
+
     },
-    boxLogin:{
-        width:'70%',
-        paddingHorizontal:20,
+    icon: {
+        position: 'absolute',
+        top: 18,
+        marginLeft: 10,
+        resizeMode: 'stretch'
+
+    },
+    passwordicon: {
+        marginTop: -4,
+
+    },
+
+    textInput: {
+        width: '100%',
+        height: 50,
+        paddingHorizontal: 50,
+        borderWidth: 1,
+        borderColor: '#ffff',
+        borderRadius: 10,
+        color: '#ffff'
+    },
+    boxLogin: {
+        width: '70%',
+        paddingHorizontal: 20,
         // paddingVertical:10,
-        flexDirection:'column',
+        flexDirection: 'column',
         // justifyContent:'center',
-        alignItems:'center',
+        alignItems: 'center',
 
     },
-    buttomLogin:{
-        width:'100%',
-        borderWidth:1,
-        borderColor:'#ffff',
-        borderRadius:10,
-        height:50,
-        justifyContent:'center',
-        backgroundColor:'red',
-        
-    }, 
-    textButtom:{
-        width:'100%',
-        textAlign:'center',
-        color:'white',
-        fontSize:24,
-        fontWeight:'700'
+    buttomLogin: {
+        width: '100%',
+        borderWidth: 1,
+        borderColor: '#ffff',
+        borderRadius: 10,
+        height: 50,
+        justifyContent: 'center',
+        backgroundColor: 'red',
+
     },
-    textBox:{
-        marginTop:10,
-        flexDirection:'row',
-    
+    textButtom: {
+        width: '100%',
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 24,
+        fontWeight: '700'
     },
-    questionText:{
-        color:'#ffff'
+    textBox: {
+        marginTop: 10,
+        flexDirection: 'row',
+
     },
-    singupText:{
-        marginLeft:5,
-        color:'red',
-        fontSize:16,
+    questionText: {
+        color: '#ffff'
     },
-    textvalidation:{
+    singupText: {
+        marginLeft: 5,
+        color: 'red',
+        fontSize: 16,
+    },
+    textvalidation: {
         color: 'red'
     },
-    logo:{
-        height:100,
-        width:100
+    logo: {
+        height: 100,
+        width: 100
     }
 
 

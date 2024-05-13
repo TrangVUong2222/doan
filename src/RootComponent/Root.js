@@ -1,5 +1,4 @@
 import React,{component} from 'react';
-
 import Profile from "../screen/profile.js";
 import Login from '../screen/login.js';
 import Id from '../screen/id.js';
@@ -18,6 +17,9 @@ import viewall from '../screen/viewall.js';
 import {ModalSigup} from '../Component/ModalSigup.js';
 import ListEmpisodes from '../Component/ListEpisodes.js';
 import ListView from '../Component/ListView.js';
+import {Provider} from 'react-redux';
+import store from '../../redux/store.js';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -95,8 +97,10 @@ const StackNavigator = () => {
 
 export default function RootComponent() {
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <StackNavigator />
     </NavigationContainer>
+    </Provider>
   );
 }
