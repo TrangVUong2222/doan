@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from 'react-native';
+// StarRating.js
+
+import React from "react";
+import { View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const StarRating = () => {
-    const [rating, setRating] = useState(0); // Trạng thái đánh giá từ người dùng
+const StarRating = ({ rating, setRating }) => {
 
     // Hàm để cập nhật đánh giá
     const handleRating = (value) => {
@@ -17,7 +18,7 @@ const StarRating = () => {
             stars.push(
                 <TouchableOpacity key={i} onPress={() => handleRating(i)}>
                     <Icon
-                        style={{marginHorizontal:3}}
+                        style={{ marginHorizontal: 3 }}
                         name={i <= rating ? 'star' : 'star-o'}
                         size={20}
                         color={i <= rating ? 'orange' : '#A9A9A9'}

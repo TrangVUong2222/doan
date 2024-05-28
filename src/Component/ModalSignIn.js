@@ -12,18 +12,13 @@ import {  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-
-const toggleModal = (close) => {
-    return !close;
-};
-
-const ModalSignIn = ({ tgModal,isVisible }) =>{
+const ModalSignIn = ({ closeModal ,isVisible }) =>{
     return (
         <Modal
             animationType="slide"
             transparent={true}
             visible={isVisible}
-            onRequestClose={()=>tgModal()}
+            onRequestClose={()=>closeModal()}
         >
         <TouchableOpacity
             style = {styles.container}
@@ -36,17 +31,12 @@ const ModalSignIn = ({ tgModal,isVisible }) =>{
             Sai Email hoặc mật khẩu!
             </Text>
             
-            <TouchableOpacity style={styles.boxclose} onPress={() => tgModal()}>
+            <TouchableOpacity style={styles.boxclose} onPress={() => closeModal()}>
                <Text style ={[styles.textShow,styles.textboxclick]}>
                 Ok
                </Text>
             </TouchableOpacity>
             </View>
-
-
-
-
-
 
         </TouchableOpacity>
          </Modal>
@@ -90,4 +80,4 @@ const styles = StyleSheet.create({
 
 })
 
-export {ModalSignIn, toggleModal}
+export {ModalSignIn}

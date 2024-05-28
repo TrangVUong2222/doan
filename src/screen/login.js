@@ -1,8 +1,9 @@
-import React, {Component, useState} from "react";
+import React, {Component, useState, useEffect} from "react";
 import axios from "axios";
 import {checkUserName, checkPassWord, checkSigIn} from "../Validation/LoginValidation";
-
-import {
+import { useDispatch, useSelector } from 'react-redux';
+import {loginUser, resetUserState} from '../Redux/features/user/userSlice';
+import{
     View,
     Text,
     TextInput,
@@ -12,7 +13,7 @@ import {
     StyleSheet,
     StatusBar,
     SafeAreaView,
-} from 'react-native'
+} from 'react-native';
 import {toggleModal, ModalSignIn }  from '../Component/ModalSignIn'
 
 export default Login = ({navigation}) =>{
@@ -21,10 +22,8 @@ export default Login = ({navigation}) =>{
     const [ErrorMessUs, setErrorMessUs] = useState(null)
     const [ErrorMessPW, setErrorMessPW] = useState(null)
     const [checkLogin, setCheckLogin] = useState(false);
-  
-    const tgModal = () => {
-        setCheckLogin(false);
-    } 
+    const [errorModalVisible, setErrorModalVisible] = useState(false);
+    //Redux state
         
     const handBulerUserName=(username)=>{
         var checkuserName = checkUserName(username)
@@ -47,33 +46,27 @@ export default Login = ({navigation}) =>{
         }
     }
 
+    const dispatch = useDispatch();
+    const { loading, error, isLoggedIn} = useSelector(state => state.user);
+
+    useEffect(()=>{
+        dispatch(resetUserState())
+    })
+
     const handleLogin = () => {
-        const data = {
-            UserName: "jhn_doe",
-            Password: "Pass@1234",
-        };
-    
-        axios.post("https://de53-118-71-137-232.ngrok-free.app/api/Account/SignIn", data, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(res => {
-           return res.data
-        })
-        .then((rs)=>{
-            console.log(rs)
-
-        })
-        .catch(error => {
-            console.log("Error during login:", error);
-            setCheckLogin(true);
-       
-        });
+        const data = { 
+            UserName: username,
+            Password: password };
+        dispatch(loginUser(data))
     };
-    
 
+    useEffect(() => {
+        if (!loading && error == "error") {
+          setErrorModalVisible(true);
+        } else if (!loading && error == null && isLoggedIn == true) {
+          navigation.navigate('Home');
+        }
+      }, [loading, error, navigation]);
 
     
     return(
@@ -83,6 +76,7 @@ export default Login = ({navigation}) =>{
         >
             <StatusBar barStyle={"light-content"}/>
             <SafeAreaView style= {styles.container}>
+
                 
                 <View style= {styles.boxLogo}>
                     <Image
@@ -136,7 +130,6 @@ export default Login = ({navigation}) =>{
                             onChangeText={text => setpassword(text)}
                             onBlur={()=>handBulerPassWord(password)}
                             secureTextEntry={true}
-
                         />                       
                     </View>
                     
@@ -147,7 +140,8 @@ export default Login = ({navigation}) =>{
                            Đăng Nhập
                         </Text>  
                     </TouchableOpacity>
-                <ModalSignIn toggleModal={toggleModal} isVisible={checkLogin} tgModal={tgModal} />
+
+                    <ModalSignIn isVisible={errorModalVisible} closeModal={() => setErrorModalVisible(false)} />
 
                     <View style = {styles.textBox} >
                         <Text style ={styles.questionText}>

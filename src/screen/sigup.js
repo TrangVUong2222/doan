@@ -1,4 +1,6 @@
-import React, {Component, useState} from "react";
+import React, {Component, useState, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {signUpUser, resetUserState} from '../Redux/features/user/userSlice'
 import {
     View,
     Text,
@@ -13,6 +15,7 @@ import {
 } from 'react-native'
 import {checkUserName, checkPassWord, checkConfirmpw, checkEmail} from "../Validation/LoginValidation";
 import {ModalSigup} from '../Component/ModalSigup';
+import { ModalSigUpError } from "../Component/ModalSigUpError";
 export default Sigup = ({navigation}) =>{
 
     const [username, setusername]  = useState(null)
@@ -28,13 +31,22 @@ export default Sigup = ({navigation}) =>{
     const [checkCfpw,setCheckCFpw] = useState(false)
     const [checkemail, setCheckEmail] =useState(false)
     const [isModalVisible, setIsMoDalVisible] =useState(false)
+    const [isVisibleError, setIsMoDalVisibleError] =useState(false)
+    const dispatch = useDispatch();
     
     const changeModalVisible = (bool) => {
         setIsMoDalVisible(bool)
     }
+    const changeModalVisibleError = (bool) => {
+        setIsMoDalVisibleError(bool)
+    }
     const toggleModalAndNavigate = () => {
         setIsMoDalVisible(false); 
-        navigation.navigate('HomeStack'); 
+        navigation.navigate('Login'); 
+    }
+    const toggleModalAndNavigateError = () => {
+        setIsMoDalVisible(false); 
+        navigation.push('Sigup'); 
     }
 
     const handBulerUserName=(username)=>{
@@ -85,6 +97,30 @@ export default Sigup = ({navigation}) =>{
         
         }
     }
+    useEffect(()=>{
+        dispatch(resetUserState())
+
+    },[])
+    
+    const { loading, error, signUp } = useSelector(state => state.user);
+    useEffect(() => {
+        if (!loading && error === "errorSignUp", signUp == false) {
+            changeModalVisibleError(true);
+        }
+        else if(!loading && error == null && signUp == true){
+            changeModalVisible(true)
+        }
+    }, [loading, error]);
+   
+    const handleSigup = () => {
+        const data = { 
+            UserName: username,
+            Password: password,
+            ConfirmPW: confirmpw,
+            Email: email,    
+         };
+        dispatch(signUpUser(data))
+    };
 
     return(
         <ImageBackground
@@ -196,7 +232,7 @@ export default Sigup = ({navigation}) =>{
                 </View>
                 <View style={styles.boxLogin}>
                     <TouchableOpacity disabled={checkUs && checkemail && checkCfpw && checkPW ? false:true} 
-                    onPress={() => changeModalVisible(true)} style={[styles.buttomLogin]} >
+                    onPress={()=>handleSigup()} style={[styles.buttomLogin]} >
                         <Text style ={styles.textButtom}>
                            Đăng ký
                         </Text>  
@@ -208,6 +244,14 @@ export default Sigup = ({navigation}) =>{
                         onRequestClose={() => changeModalVisible(false)}
                     >
                         <ModalSigup toggleModalAndNavigate={toggleModalAndNavigate} />
+                    </Modal>
+                    <Modal
+                        transparent = {true}
+                        animationType = 'fade'
+                        visible ={isVisibleError}
+                        onRequestClose={() => changeModalVisibleError(false)}
+                    >
+                        <ModalSigUpError toggleModalAndNavigate={toggleModalAndNavigateError} />
                     </Modal>
 
                     <View style = {styles.textBox} >

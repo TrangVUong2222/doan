@@ -1,5 +1,8 @@
-import React, {Component ,useState} from "react";
+import React, {Component ,useState, useEffect} from "react";
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import { useSelector } from "react-redux";
+import {selectUserInfo, selectIsLoggedIn} from "../Redux/selector/userSelector"
+import {LogInCmt} from "../Component/LogInCmt"
 import {
     View,
     Text,
@@ -17,7 +20,24 @@ import { ModalDelete } from "../Component/ModalDelete";
 
 export default Watchlist = ({navigation}) =>{
     const [isModalVisible, setModalVisible] = useState(false);
-
+    const [checkLoginCmt,setcheckLoginCmt] = useState(false);
+    const isLoggedIn = useSelector(selectIsLoggedIn)
+    const ClickX =()=>{
+        setcheckLoginCmt(false)
+    }
+    const tgModal = () => {
+        setcheckLoginCmt(false); 
+        navigation.navigate('Login')
+    }
+    useEffect (()=>{
+        if(isLoggedIn == true){
+            return
+        }
+        else{
+            setcheckLoginCmt(true)
+            return 
+        }
+    })
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
@@ -73,6 +93,7 @@ export default Watchlist = ({navigation}) =>{
                             color={'red'}
                         />
                     </View>
+                    <LogInCmt isVisible={checkLoginCmt} tgModal={tgModal }  ClickX = {ClickX}/>
                 </View>
                 
                 <ListView  navigation={navigation} data={data} toggleModal={toggleModal} />

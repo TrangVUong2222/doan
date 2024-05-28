@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import { useDispatch, useSelector } from "react-redux";
+import { updateMovieInfo } from "../Redux/features/movies/moviesSlice";
+import {selectMovieById} from "../Redux/selector/moviesSelector";
+import { Image } from 'expo-image';
 import {
     View,
     Text,
     TouchableOpacity,
-    Image,
     ImageBackground,
     StyleSheet,
     SafeAreaView,
@@ -13,93 +16,57 @@ import {
     Dimensions,
 } from 'react-native';
 import ViewSession  from '../Component/ViewSession'
-import ListEmpisodes from "../Component/ListEpisodes";
+import ListEpisodes from "../Component/ListEpisodes";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const heightPoster = windowWidth / 1.8;
 const gioithieu = 'gioithieu';
 const dienvien = 'dienvien';
 
-
-const ViewGioiThieu = () =>{
+const ViewGioiThieu = ({data}) =>{
     return(
         <View style={styles.viewtitle}>
             <ScrollView>
             <Text style={styles.texttitle}>
-            Bộ phim "Người nuôi ong trả thù" kể về hành trình trả thù của một người đàn ông đơn độc. Jason Statham vào vai Adam Clay, một người nuôi ong sống cô độc. Anh rất gắn bó với bà chủ nhà, người duy nhất coi anh như người thân. Tuy nhiên, một bi kịch xảy ra khi bà qua đời, rồi theo đó là sự thật đằng sau cái chết của bà. Đau đớn và phẫn nộ, Adam quyết tâm trả thù bằng một kế hoạch tàn khốc. Anh khéo léo lần mò tìm ra bằng chứng, rồi tiêu diệt từng mắt xích trong đường dây lừa đảo lớn đã gây ra bi kịch cho cuộc đời mình. Bộ phim với nhịp độ gay cấn kịch tính khắc họa nỗi đau và lòng trả thù của con người, đồng thời hé lộ từng chút một về quá khứ bí ẩn của nhân vật chính.
+               {data}
             </Text>
             </ScrollView>
         </View>
     )
 }
-const ViewDienvien = () =>{
+const ViewDienvien = ({data}) =>{
     return(
         <View style={styles.viewtitle}>
             <Text style={styles.texttitle}>
-            Konosuke Uda, Munehisa Sakai, Mamoru Hosoda
+                {data}
             </Text>
         </View>
     )
 }
+export default function SeriMovie({ navigation, route }) {
+    
+    const dispatch = useDispatch();
+    const IdM = route.params.IdM;
+    // console.log(IdM)
+    const movie = useSelector(selectMovieById(IdM))
+    // console.log(movie)
+    const dataDienVien = movie.Starring == "None"  || undefined ? "": movie.Starring;
+    const dataGioiThieu =movie.DescriptionMovie
+    // console.log(dataGioiThieu)
+    const dataSeri = movie.Seri
+    // console.log(dataSeri)
+    const episode = movie.Episode
+    useEffect(()=>{
+        if (IdM) {
+            dispatch(updateMovieInfo(IdM));
+          }
+    },[dispatch, IdM])
 
 
-
-export default function SeriMovie({ navigation }) {
-
-    const data = [
-        { id: 1, name: 'Episode 1' },
-        { id: 2, name: 'Episode 2' },
-        { id: 3, name: 'Episode 3' },
-        { id: 4, name: 'Episode 1' },
-        { id: 5, name: 'Episode 2' },
-        { id: 6, name: 'Episode 3' },
-        { id: 7, name: 'Episode 1' },
-        { id: 8, name: 'Episode 2' },
-        { id: 9, name: 'Episode 3' },
-        
-    ];
-    const data1 = [
-        { id: 1, name: 'Session 1' },
-        { id: 2, name: 'Session 2' },
-        { id: 3, name: 'Session 3' },
-        { id: 4, name: 'Session 4' },
-        
-    ];
     
 
     const [clicktitle, setClicktitle] = useState(gioithieu);
 
-    const [imgList, setImgList] = useState([]);
-    const [imgContentList, setImgContentList] = useState([]);
-
-    useEffect(() => {
-        const data = [
-            { img: require('../assets/image/121.png') },
-            { img: require('../assets/image/121.png') },
-            { img: require('../assets/image/121.png') },
-            { img: require('../assets/image/121.png') },
-            { img: require('../assets/image/121.png') },
-        ];
-        setImgList(data);
-    }, []);
-
-    useEffect(() => {
-        const dataContent = [
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-            { image: require('../assets/image/51.png') },
-        ];
-        setImgContentList(dataContent);
-    }, []);
 
     const shortenText = (text, maxLength) => {
         if (text.length <= maxLength) return text;
@@ -131,14 +98,14 @@ export default function SeriMovie({ navigation }) {
                 <View style={styles.boxbody}>
                     <View style={styles.imgPlace}>
                         <Image
-                            source={require('../assets/image/51.png')}
+                            source={{uri: movie.ImgIntroUrl}}
                             style={styles.smallImg}
                         />
                     </View>
                     <View style={styles.miniboxinfo}>
                         <View style={styles.boxadd}>
                             <View style={styles.boxname}> 
-                                <Text numberOfLines={2}  style={styles.name}>{shortenText("Mật vụ ong ", 25)}</Text>
+                                <Text numberOfLines={2}  style={styles.name}>{shortenText(movie.NameMovie, 25)}</Text>
                             </View>
                             <View style={styles.addpick}>
                             
@@ -147,7 +114,7 @@ export default function SeriMovie({ navigation }) {
                         <View style={styles.boxinfo}>
                             
                                 <View style={styles.rate}>
-                                    <Text style={styles.ratePoint}>10</Text>
+                                    <Text style={styles.ratePoint}>{movie.Rate}</Text>
                                     <Icon 
                                         name='star'
                                         size={15}
@@ -163,7 +130,7 @@ export default function SeriMovie({ navigation }) {
                                             color={'white'}
                                             style={{ marginLeft: 5 }}
                                         />
-                                        <Text style={styles.textInfo}>Hoàn thành</Text>
+                                        <Text style={styles.textInfo}>{movie.Status}</Text>
                                     </View>
                                     <View style={styles.textRow}>
                                         <Icon 
@@ -172,7 +139,7 @@ export default function SeriMovie({ navigation }) {
                                             color={'white'}
                                             style={{ marginLeft: 5 }}
                                         />
-                                        <Text style={styles.textInfo} numberOfLines={1}>Hành Động, Phiêu Lưu, Hài Hước, Viễn Tưởnga sdas asdadas ádda</Text>
+                                        <Text style={styles.textInfo} numberOfLines={1}><Text>{movie.Genre.join(', ')}</Text></Text>
                                     </View>
                                     <View style={styles.textRow}>
                                         <Icon 
@@ -181,7 +148,7 @@ export default function SeriMovie({ navigation }) {
                                             color={'white'}
                                             style={{ marginLeft: 5 }}
                                         />
-                                        <Text style={styles.textInfo}>2020</Text>
+                                         <Text style={styles.textInfo}>{movie.Released ? movie.Released : 'N/A'}</Text>
                                     </View>
                                     {/* <View style={styles.textRow}>
                                     <Icon 
@@ -201,7 +168,7 @@ export default function SeriMovie({ navigation }) {
                 </View>
                 <View >  
                     
-                    <ViewSession data={data1}/>
+                    <ViewSession data={dataSeri} navigation={navigation}/>
 
                    
                 </View>
@@ -209,7 +176,7 @@ export default function SeriMovie({ navigation }) {
              
                 <View style={styles.bodyunder}> 
                     
-                    <ListEmpisodes navigation={navigation} data={data}/>
+                <ListEpisodes navigation={navigation} numberOfEpisodes={episode} IdM = {IdM} />
                     
                 </View>
                 <View style={styles.middleBox}>
@@ -246,10 +213,10 @@ export default function SeriMovie({ navigation }) {
                        
                     </View>
                     <View style = {styles.info}>
-                        {clicktitle === dienvien && <ViewDienvien/>
+                        {clicktitle === dienvien && <ViewDienvien data ={dataDienVien}/>
                         }
                          {clicktitle === gioithieu && 
-                        <ViewGioiThieu/>  }
+                        <ViewGioiThieu data ={dataGioiThieu}/>  }
                     </View>
                 </View>
                 
@@ -318,6 +285,8 @@ const styles = StyleSheet.create({
     },
    
     smallImg: {
+        height:166,
+        width:100,
         borderRadius: 5,
         margin: 20
     },

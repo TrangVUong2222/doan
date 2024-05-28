@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     imgLogo:{
         width:45,
         height:40,
-        resizeMode:'contain',
+        contentFit:"cover",
     },
     logo:{
         height:'100%',
@@ -26,9 +26,10 @@ const styles = StyleSheet.create({
     },
     searchInput:{
         textAlign:'center',
-        width:'80%',
+        width:'90%',
         color: 'white',
         fontSize:15,
+        
         
         
     },
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     userIcon:{
         width:40,
         height:40,
-        resizeMode:'contain'
+        contentFit:"cover"
     },
     boxSlide: {
         height:520,
@@ -189,6 +190,25 @@ const styles = StyleSheet.create({
         width:'75%',
         borderRadius:5
     },
+    rateBox:{
+        left:20,
+    },
+    rate:{
+        position:'absolute',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        left:10,
+        top:10,
+    },
+    ratePointBox:{
+        color:"orange",
+        fontSize:15,
+    },
+    ratePoint:{
+        color:"orange",
+        fontSize:20,
+    }
   
     
 

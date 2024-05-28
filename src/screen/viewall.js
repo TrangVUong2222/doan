@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome6';
-
+import { Image } from "expo-image";
 import {
     View,
     Text,
     TextInput,
     TouchableOpacity,
-    Image,
     ImageBackground,
     StyleSheet,
     StatusBar,
@@ -18,74 +17,10 @@ import {
 
 
 
-export default function Viewall ({navigation}) {
-    const [imgList, setImgList] = useState([]);
-    const [imgContentList, setImgContenList] = useState([]);
+export default function Viewall ({navigation, route}) {
 
-    useEffect(() => {
-        const data = [
-            {
-                img: require('../assets/image/121.png')
-            },
-            {
-                img: require('../assets/image/121.png')
-            },
-            {
-                img: require('../assets/image/121.png')
-            },
-            {
-                img: require('../assets/image/121.png')
-            },
-            {
-                img: require('../assets/image/121.png')
-            },
-        ];
-        setImgList(data);
-    }, []);
-
-    useEffect(() => {
-        const dataContent = [
-            { 
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-            {
-                image: require('../assets/image/51.png')
-            },
-        ];
-        setImgContenList(dataContent);
-
-    }, [])
-
+    const Data = route.params.Data
+    const title = route.params.title
     return (
         <ImageBackground
             source={require('../assets/image/backgroundimg1.png')}
@@ -105,7 +40,7 @@ export default function Viewall ({navigation}) {
                     </View> 
                     <View style={styles.boxtitle}>
                         <Text style={styles.texttitle}>
-                            Phim mới
+                           {title}
                         </Text>
                     </View>
                     <View>
@@ -117,16 +52,30 @@ export default function Viewall ({navigation}) {
                     <FlatList
                         numColumns={2}
                         keyExtractor={(item, index) => index.toString()} 
-                        data={imgList}
+                        data={Data}
                         contentContainerStyle={styles.flatListContainer}
                         renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => navigation.navigate('Serimovie')}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Serimovie', {IdM : item.IdM})}>
                             <Image
                                 style={styles.image2}
-                                source={item.img}
+                                source={{uri: item.ImgIntroUrl}}
                             />
+                            <View style={styles.rate}>
+                                    <Text style={styles.ratePoint}>{item.Rate}</Text>
+                                    <Icon
+                                        name='star'
+                                        size={15}
+                                        color={'orange'}
+                                        style={{ marginLeft: 5, marginTop:10 }}
+                                    />
+                                </View>
+                                <View style={styles.boxName}>
+                            <Text style={styles.textname} numberOfLines={2} ellipsizeMode="tail">{item.NameMovie}</Text>
+                            </View>
                             </TouchableOpacity>
+                            
                             )}
+                            
                     />
                     </View>
                 </View>
@@ -165,6 +114,32 @@ const styles = StyleSheet.create({
         paddingVertical: 10, 
       },
     image2: {
-       margin:10
+       margin:25,
+       height:200,
+       width:130,
+       borderRadius:5,
+
     },  
+    rate: {
+        position: 'absolute',
+        flexDirection: 'row',
+        left: 30,
+        top: 20
+    },
+    ratePoint: {
+        color: 'orange'
+    },
+    boxName: {
+        marginTop: 10,
+        width: 130,
+        height: 40,
+        marginLeft:25
+        
+    },
+    textname:{
+        color: "#fff",
+        textAlign: "left",
+        lineHeight: 20, // Khoảng cách giữa các dòng
+        maxLines: 2,
+    },
 })

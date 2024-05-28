@@ -18,7 +18,9 @@ import viewall from '../screen/viewall.js';
 import {ModalSigup} from '../Component/ModalSigup.js';
 import ListEmpisodes from '../Component/ListEpisodes.js';
 import ListView from '../Component/ListView.js';
-
+import store from "../Redux/store.js";
+//importing the provider from react-redux  
+import { Provider } from 'react-redux'
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -95,8 +97,10 @@ const StackNavigator = () => {
 
 export default function RootComponent() {
   return (
-    <NavigationContainer>
-      <StackNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }

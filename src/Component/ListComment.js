@@ -43,7 +43,7 @@ const ListComment = ({ data }) => {
                                         <Text style ={styles.UserNameListCmt}>{` ${item.UserName}`}</Text>
                                     </View>
                                     <View style ={styles.ItemRightSub}>
-                                        <Text style={styles.UserRated}>{` ${item.UserRate}`}</Text>
+                                        <Text style={styles.UserRated}>{` ${item.Rate}`}</Text>
                                         <Icon 
                                             name='star'
                                             size={15}
@@ -52,18 +52,17 @@ const ListComment = ({ data }) => {
                                         />
 
                                     </View>
-                            
 
                                 </View>
 
                             </View>
                             <View style= {styles.ItemCommentContent}>
-                                <Text style={styles.textComment}>{shortenText(`${item.UserComment}`, 200)}</Text>
+                                <Text style={styles.textComment}>{shortenText(`${item.Content}`, 200)}</Text>
 
                             </View>
                         </View> 
                 )}
-                keyExtractor={item => item.id.toString()} 
+                keyExtractor={item => item.IdC.toString()} 
             />
         </View>
     );

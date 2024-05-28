@@ -75,10 +75,7 @@ export default Profile = () =>{
                     </TouchableOpacity>
                 </View>
 
-           </View>
-           
-           
-            
+           </View>    
          </SafeAreaView>
         </ImageBackground>
     )
@@ -133,8 +130,6 @@ const styles = StyleSheet.create({
         alignItems:"center",
         marginTop:51,
         width:"80%",
-       
-    
     },
     pwicon:{
         position : "absolute",
